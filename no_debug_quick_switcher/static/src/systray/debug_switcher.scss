@@ -1,0 +1,72 @@
+// Copyright 2026 Naim OUDAYET
+// License LGPL-3
+//
+// Canonical palette only (per ODOO_GUIDELINES §1):
+//   #714B67  primary    #5A3A52  primary-dark
+//   #00A09D  success    #FF7F4F  warning
+//   #94A3B8  neutral    #475569  neutral-darker
+//
+// The page-edge stripe is intentionally subtle (4px) so it doesn't fight
+// Odoo's own chrome but is visible enough to remind a dev they're in a
+// heavy mode. We tint by mode via the data-mode attribute on the wrapper.
+
+.o_no_debug_switcher {
+    display: inline-flex;
+    align-items: center;
+
+    &__btn {
+        padding: 4px 8px;
+        line-height: 1;
+    }
+
+    &__badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-size: 11px;
+        font-weight: 700;
+        color: #FFFFFF;
+        letter-spacing: 0.3px;
+        line-height: 1.4;
+        min-width: 38px;
+        text-align: center;
+    }
+
+    &__swatch {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+
+    &__menu {
+        min-width: 240px;
+    }
+
+    &__hotkey-hint kbd {
+        font-size: 10px;
+        padding: 1px 4px;
+        background-color: #F8F5F7;
+        border: 1px solid #E8DDE5;
+        border-radius: 3px;
+        color: #475569;
+    }
+}
+
+// Page-edge stripe — only when the URL is in a heavy mode (assets, tests,
+// or assets+tests). Strong visual cue that the dev is paying for it.
+body[data-debug="assets"]::before,
+body[data-debug="tests"]::before,
+body[data-debug="assets,tests"]::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 4px;
+    z-index: 10000;
+    pointer-events: none;
+}
+body[data-debug="assets"]::before { background-color: #FF7F4F; }
+body[data-debug="tests"]::before { background-color: #714B67; }
+body[data-debug="assets,tests"]::before {
+    background: linear-gradient(90deg, #FF7F4F 0%, #714B67 100%);
+}
