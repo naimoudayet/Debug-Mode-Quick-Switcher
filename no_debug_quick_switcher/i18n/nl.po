@@ -1,0 +1,143 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* no_debug_quick_switcher
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-12 00:00+0000\n"
+"PO-Revision-Date: 2026-05-12 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
+#, python-format
+msgid "Current debug mode: %s"
+msgstr "Huidige debug-modus: %s"
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,description:no_debug_quick_switcher.module_meta_information
+msgid ""
+"Debug Mode Quick Switcher replaces the URL-typing dance. A navbar drop"
+"down shows the current debug mode with a colour badge and lets you jum"
+"p to any of the 5 modes in one click. Per-user default is remembered a"
+"cross sessions on your res.users record. Ctrl+Shift+D cycles modes; Ct"
+"rl+Shift+A jumps to Assets. Mobile-ready. A page-edge stripe in heavy "
+"modes (Assets / Tests) keeps you from forgetting you're slowing the ap"
+"p down. Global 'disable in production' master switch keeps the module "
+"dormant on prod databases."
+msgstr ""
+"Snelschakelaar Debug-Modus vervangt het URL-typen. Een dropdown in de "
+"navigatiebalk toont de huidige debug-modus met een gekleurde badge en "
+"laat u in één klik naar een van de 5 modi springen. Voorkeur per gebru"
+"iker wordt over sessies onthouden op uw res.users-record. Ctrl+Shift+D"
+" doorloopt modi; Ctrl+Shift+A springt naar Assets. Mobielvriendelijk. "
+"Een streep aan de paginarand in zware modi (Assets / Tests) voorkomt d"
+"at u vergeet dat u de app vertraagt. Een globale 'uitschakelen in prod"
+"uctie' hoofdschakelaar houdt de module inactief op productiedatabases."
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,shortdesc:no_debug_quick_switcher.module_meta_information
+msgid "Debug Mode Quick Switcher"
+msgstr "Snelschakelaar Debug-Modus"
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,summary:no_debug_quick_switcher.module_meta_information
+msgid ""
+"One-click navbar switcher for Odoo's 5 debug modes — Off, Dev, Assets,"
+" Tests, Assets+Tests — with per-user default, hotkey, and mobile suppo"
+"rt"
+msgstr ""
+"Eén-klik navigatiebalk-schakelaar voor Odoo's 5 debug-modi — Uit, Dev,"
+" Assets, Tests, Assets+Tests — met voorkeur per gebruiker, sneltoets e"
+"n mobiele ondersteuning"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Off (no debug)"
+msgstr "Uit (geen debug)"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Developer Mode"
+msgstr "Ontwikkelaarsmodus"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Assets (non-minified JS)"
+msgstr "Assets (niet-geminified JS)"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Tests (QUnit / Hoot)"
+msgstr "Tests (QUnit / Hoot)"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Assets + Tests"
+msgstr "Assets + Tests"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_users__x_debug_default_mode
+msgid "Default Debug Mode"
+msgstr "Standaard Debug-Modus"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,help:no_debug_quick_switcher.field_res_users__x_debug_default_mode
+msgid ""
+"Starting debug mode whenever you log in. Off by default. The switcher "
+"in the navbar will land on this mode automatically — no more typing ?d"
+"ebug=assets in the URL bar 30 times a day."
+msgstr ""
+"Initiële debug-modus bij elke aanmelding. Standaard uit. De schakelaar"
+" in de navigatiebalk landt automatisch in deze modus — niet meer 30 ke"
+"er per dag ?debug=assets typen in de URL-balk."
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_config_settings__x_debug_switcher_disabled
+msgid "Disable Debug Switcher in Production"
+msgstr "Debug-Schakelaar in Productie Uitschakelen"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,help:no_debug_quick_switcher.field_res_config_settings__x_debug_switcher_disabled
+msgid ""
+"When enabled, the navbar switcher hides and the per-user default is ig"
+"nored. Recommended ON for production databases — it keeps users from a"
+"ccidentally landing in Tests mode (which slows page loads dramatically"
+" by loading QUnit assets)."
+msgstr ""
+"Indien ingeschakeld, verbergt de schakelaar in de navigatiebalk zich e"
+"n wordt de voorkeur per gebruiker genegeerd. Aanbevolen AAN voor produ"
+"ctiedatabases — voorkomt dat gebruikers per ongeluk in de Tests-modus "
+"belanden (die het laden van pagina's drastisch vertraagt door het lade"
+"n van QUnit-assets)."
+
+#. module: no_debug_quick_switcher
+#: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_debug_mode
+#: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_preferences_debug_mode
+msgid "Debug Mode Quick Switcher"
+msgstr "Snelschakelaar Debug-Modus"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.xml:0
+msgid "Debug Mode"
+msgstr "Debug-Modus"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.xml:0
+msgid "Copy debug URL"
+msgstr "Debug-URL kopiëren"
