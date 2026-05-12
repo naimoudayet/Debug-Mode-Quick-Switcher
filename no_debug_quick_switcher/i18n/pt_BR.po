@@ -1,0 +1,144 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* no_debug_quick_switcher
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-12 00:00+0000\n"
+"PO-Revision-Date: 2026-05-12 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/odoo/teams/41243/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
+#, python-format
+msgid "Current debug mode: %s"
+msgstr "Modo de depuração atual: %s"
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,description:no_debug_quick_switcher.module_meta_information
+msgid ""
+"Debug Mode Quick Switcher replaces the URL-typing dance. A navbar drop"
+"down shows the current debug mode with a colour badge and lets you jum"
+"p to any of the 5 modes in one click. Per-user default is remembered a"
+"cross sessions on your res.users record. Ctrl+Shift+D cycles modes; Ct"
+"rl+Shift+A jumps to Assets. Mobile-ready. A page-edge stripe in heavy "
+"modes (Assets / Tests) keeps you from forgetting you're slowing the ap"
+"p down. Global 'disable in production' master switch keeps the module "
+"dormant on prod databases."
+msgstr ""
+"Alternador Rápido de Modo Depuração substitui a digitação manual da UR"
+"L. Um menu suspenso na barra de navegação mostra o modo de depuração a"
+"tual com um emblema colorido e permite alternar para qualquer um dos 5"
+" modos em um clique. A preferência por usuário é lembrada entre sessõe"
+"s no seu registro res.users. Ctrl+Shift+D percorre os modos; Ctrl+Shif"
+"t+A salta para Assets. Compatível com celular. Uma faixa na borda da p"
+"ágina nos modos pesados (Assets / Tests) impede que você esqueça que e"
+"stá desacelerando o aplicativo. Um interruptor mestre global 'desativa"
+"r em produção' mantém o módulo inativo em bancos de dados de produção."
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,shortdesc:no_debug_quick_switcher.module_meta_information
+msgid "Debug Mode Quick Switcher"
+msgstr "Alternador Rápido de Modo Depuração"
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,summary:no_debug_quick_switcher.module_meta_information
+msgid ""
+"One-click navbar switcher for Odoo's 5 debug modes — Off, Dev, Assets,"
+" Tests, Assets+Tests — with per-user default, hotkey, and mobile suppo"
+"rt"
+msgstr ""
+"Alternador da barra de navegação de um clique para os 5 modos de depur"
+"ação do Odoo — Desligado, Dev, Assets, Tests, Assets+Tests — com prefe"
+"rência por usuário, atalho de teclado e suporte móvel"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Off (no debug)"
+msgstr "Desligado (sem depuração)"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Developer Mode"
+msgstr "Modo Desenvolvedor"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Assets (non-minified JS)"
+msgstr "Assets (JS não minificado)"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Tests (QUnit / Hoot)"
+msgstr "Tests (QUnit / Hoot)"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Assets + Tests"
+msgstr "Assets + Tests"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_users__x_debug_default_mode
+msgid "Default Debug Mode"
+msgstr "Modo Depuração Padrão"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,help:no_debug_quick_switcher.field_res_users__x_debug_default_mode
+msgid ""
+"Starting debug mode whenever you log in. Off by default. The switcher "
+"in the navbar will land on this mode automatically — no more typing ?d"
+"ebug=assets in the URL bar 30 times a day."
+msgstr ""
+"Modo de depuração inicial sempre que você faz login. Desligado por pad"
+"rão. O alternador na barra de navegação cairá automaticamente neste mo"
+"do — sem mais digitar ?debug=assets na barra de URL 30 vezes por dia."
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_config_settings__x_debug_switcher_disabled
+msgid "Disable Debug Switcher in Production"
+msgstr "Desativar Alternador de Depuração em Produção"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,help:no_debug_quick_switcher.field_res_config_settings__x_debug_switcher_disabled
+msgid ""
+"When enabled, the navbar switcher hides and the per-user default is ig"
+"nored. Recommended ON for production databases — it keeps users from a"
+"ccidentally landing in Tests mode (which slows page loads dramatically"
+" by loading QUnit assets)."
+msgstr ""
+"Quando ativado, o alternador na barra de navegação se esconde e a pref"
+"erência por usuário é ignorada. Recomendado LIGADO para bancos de dado"
+"s de produção — evita que os usuários cheguem acidentalmente no modo T"
+"ests (que desacelera drasticamente o carregamento de páginas ao carreg"
+"ar os assets QUnit)."
+
+#. module: no_debug_quick_switcher
+#: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_debug_mode
+#: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_preferences_debug_mode
+msgid "Debug Mode Quick Switcher"
+msgstr "Alternador Rápido de Modo Depuração"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.xml:0
+msgid "Debug Mode"
+msgstr "Modo Depuração"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.xml:0
+msgid "Copy debug URL"
+msgstr "Copiar URL de depuração"
