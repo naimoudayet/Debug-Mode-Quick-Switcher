@@ -1,0 +1,134 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* no_debug_quick_switcher
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-12 00:00+0000\n"
+"PO-Revision-Date: 2026-05-12 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (Simplified) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
+#, python-format
+msgid "Current debug mode: %s"
+msgstr "当前调试模式:%s"
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,description:no_debug_quick_switcher.module_meta_information
+msgid ""
+"Debug Mode Quick Switcher replaces the URL-typing dance. A navbar drop"
+"down shows the current debug mode with a colour badge and lets you jum"
+"p to any of the 5 modes in one click. Per-user default is remembered a"
+"cross sessions on your res.users record. Ctrl+Shift+D cycles modes; Ct"
+"rl+Shift+A jumps to Assets. Mobile-ready. A page-edge stripe in heavy "
+"modes (Assets / Tests) keeps you from forgetting you're slowing the ap"
+"p down. Global 'disable in production' master switch keeps the module "
+"dormant on prod databases."
+msgstr ""
+"调试模式快速切换器取代了手动在 URL 中输入调试参数。导航栏下拉菜单通过彩色徽章显示当前调试模式,只需一键即可切换到 5 种模式中的任何一"
+"种。每用户默认值保存在您的 res.users 记录上,跨会话保留。Ctrl+Shift+D 循环切换模式;Ctrl+Shift+A 直接跳"
+"转到 Assets。支持移动端。重模式(Assets / Tests)下页面边缘的彩色条纹防止您忘记自己正在拖慢应用。全局“生产环境禁用”主"
+"开关在生产数据库上保持模块休眠。"
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,shortdesc:no_debug_quick_switcher.module_meta_information
+msgid "Debug Mode Quick Switcher"
+msgstr "调试模式快速切换器"
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,summary:no_debug_quick_switcher.module_meta_information
+msgid ""
+"One-click navbar switcher for Odoo's 5 debug modes — Off, Dev, Assets,"
+" Tests, Assets+Tests — with per-user default, hotkey, and mobile suppo"
+"rt"
+msgstr ""
+"一键导航栏切换器,用于 Odoo 的 5 种调试模式 — 关闭、Dev、Assets、Tests、Assets+Tests — 支持每用户默"
+"认值、热键和移动端"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Off (no debug)"
+msgstr "关闭(无调试)"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Developer Mode"
+msgstr "开发者模式"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Assets (non-minified JS)"
+msgstr "Assets(未压缩的 JS)"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Tests (QUnit / Hoot)"
+msgstr "Tests(QUnit / Hoot)"
+
+#. module: no_debug_quick_switcher
+#. odoo-python
+#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+msgid "Assets + Tests"
+msgstr "Assets + Tests"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_users__x_debug_default_mode
+msgid "Default Debug Mode"
+msgstr "默认调试模式"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,help:no_debug_quick_switcher.field_res_users__x_debug_default_mode
+msgid ""
+"Starting debug mode whenever you log in. Off by default. The switcher "
+"in the navbar will land on this mode automatically — no more typing ?d"
+"ebug=assets in the URL bar 30 times a day."
+msgstr ""
+"每次登录时的初始调试模式。默认为关闭。导航栏中的切换器会自动落在此模式 — 不再需要每天 30 次在 URL 栏中输入 ?debug=ass"
+"ets。"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_config_settings__x_debug_switcher_disabled
+msgid "Disable Debug Switcher in Production"
+msgstr "在生产环境中禁用调试切换器"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,help:no_debug_quick_switcher.field_res_config_settings__x_debug_switcher_disabled
+msgid ""
+"When enabled, the navbar switcher hides and the per-user default is ig"
+"nored. Recommended ON for production databases — it keeps users from a"
+"ccidentally landing in Tests mode (which slows page loads dramatically"
+" by loading QUnit assets)."
+msgstr ""
+"启用后,导航栏切换器会隐藏,并且会忽略每用户默认值。生产数据库建议开启 — 防止用户意外进入 Tests 模式(它会通过加载 QUnit 资"
+"源大大减慢页面加载速度)。"
+
+#. module: no_debug_quick_switcher
+#: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_debug_mode
+#: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_preferences_debug_mode
+msgid "Debug Mode Quick Switcher"
+msgstr "调试模式快速切换器"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.xml:0
+msgid "Debug Mode"
+msgstr "调试模式"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.xml:0
+msgid "Copy debug URL"
+msgstr "复制调试 URL"
