@@ -29,10 +29,8 @@
                         <DropdownItem onSelected="() => this.onCopyDebugUrl()">
                             <i class="fa fa-link me-2 text-muted"/>Copy debug URL
                         </DropdownItem>
-                        <div class="px-3 pt-1 pb-2 small text-muted o_no_debug_switcher__hotkey-hint">
-                            <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> cycles &#160;·&#160;
-                            <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> jumps to Assets
-                        </div>
+                        <div class="px-3 pt-1 pb-2 small text-muted o_no_debug_switcher__hotkey-hint"
+                             t-out="hotkeyHintMarkup"/>
                     </div>
                 </t>
             </Dropdown>
