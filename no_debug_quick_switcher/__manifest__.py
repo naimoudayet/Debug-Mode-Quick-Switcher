@@ -12,7 +12,7 @@
                    "modes (Assets / Tests) keeps you from forgetting you're "
                    "slowing the app down. Global 'disable in production' master "
                    "switch keeps the module dormant on prod databases.",
-    "version": "19.0.1.1.0",
+    "version": "19.0.1.2.0",
     "category": "Productivity",
     "website": "https://www.oudayet.com",
     "author": "Naim OUDAYET",

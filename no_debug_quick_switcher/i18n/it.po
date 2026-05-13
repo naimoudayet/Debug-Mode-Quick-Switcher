@@ -62,32 +62,29 @@ msgstr ""
 "erenza per utente, scorciatoia da tastiera e supporto mobile"
 
 #. module: no_debug_quick_switcher
-#. odoo-python
-#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+#: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__
 msgid "Off (no debug)"
 msgstr "Disattivato (nessun debug)"
 
 #. module: no_debug_quick_switcher
-#. odoo-python
-#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+#: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__1
 msgid "Developer Mode"
 msgstr "Modalità Sviluppatore"
 
 #. module: no_debug_quick_switcher
-#. odoo-python
-#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+#: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__assets
 msgid "Assets (non-minified JS)"
 msgstr "Assets (JS non minificato)"
 
 #. module: no_debug_quick_switcher
-#. odoo-python
-#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+#: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__tests
 msgid "Tests (QUnit / Hoot)"
 msgstr "Tests (QUnit / Hoot)"
 
 #. module: no_debug_quick_switcher
-#. odoo-python
-#: code:addons/no_debug_quick_switcher/models/res_users.py:0
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
+#: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__assets,tests
 msgid "Assets + Tests"
 msgstr "Assets + Tests"
 
@@ -144,3 +141,46 @@ msgstr "Modalità Debug"
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.xml:0
 msgid "Copy debug URL"
 msgstr "Copia URL di debug"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
+msgid "Off"
+msgstr "Disattivato"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
+msgid "Developer"
+msgstr "Sviluppatore"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
+msgid "Assets"
+msgstr "Asset"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
+msgid "Tests"
+msgstr "Test"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
+msgid "Dev"
+msgstr "Svil"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
+msgid "A+T"
+msgstr "A+T"
+
+#. module: no_debug_quick_switcher
+#. odoo-javascript
+#: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
+msgid "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> cycles · <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> jumps to Assets"
+msgstr "<kbd>Ctrl</kbd>+<kbd>Maiusc</kbd>+<kbd>D</kbd> scorre le modalità · <kbd>Ctrl</kbd>+<kbd>Maiusc</kbd>+<kbd>A</kbd> salta agli Asset"
+

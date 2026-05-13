@@ -7,20 +7,21 @@ msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-12 00:00+0000\n"
-"PO-Revision-Date: 2026-05-12 00:00+0000\n"
+"PO-Revision-Date: 2026-05-13 00:00+0000\n"
 "Last-Translator: \n"
-"Language-Team: \n"
+"Language-Team: Arabic (https://www.transifex.com/odoo/teams/41243/ar/)\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 
 #. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
 #, python-format
 msgid "Current debug mode: %s"
-msgstr ""
+msgstr "وضع التصحيح الحالي: %s"
 
 #. module: no_debug_quick_switcher
 #: model:ir.module.module,description:no_debug_quick_switcher.module_meta_information
@@ -34,11 +35,19 @@ msgid ""
 "p down. Global 'disable in production' master switch keeps the module "
 "dormant on prod databases."
 msgstr ""
+"محوّل وضع التصحيح السريع يلغي الحاجة لكتابة المعاملات في شريط العنوان. "
+"تظهر قائمة منسدلة في شريط التنقل الوضع الحالي بشارة ملوّنة وتتيح لك التن"
+"قل بين الأوضاع الخمسة بنقرة واحدة. الوضع الافتراضي لكل مستخدم يُحفظ بين"
+" الجلسات على سجل res.users الخاص بك. Ctrl+Shift+D للتنقل بين الأوضاع؛ "
+"Ctrl+Shift+A للانتقال مباشرة إلى وضع الأصول. متوافق مع الأجهزة المحمول"
+"ة. شريط ملوّن على حافة الصفحة في الأوضاع الثقيلة (الأصول / الاختبارات) "
+"لتذكيرك بأنك تبطّئ التطبيق. مفتاح تعطيل عام للإنتاج يبقي الوحدة خاملة ع"
+"لى قواعد بيانات الإنتاج."
 
 #. module: no_debug_quick_switcher
 #: model:ir.module.module,shortdesc:no_debug_quick_switcher.module_meta_information
 msgid "Debug Mode Quick Switcher"
-msgstr ""
+msgstr "محوّل وضع التصحيح السريع"
 
 #. module: no_debug_quick_switcher
 #: model:ir.module.module,summary:no_debug_quick_switcher.module_meta_information
@@ -47,38 +56,41 @@ msgid ""
 " Tests, Assets+Tests — with per-user default, hotkey, and mobile suppo"
 "rt"
 msgstr ""
+"محوّل في شريط التنقل بنقرة واحدة لأوضاع التصحيح الخمسة في Odoo — متوقف،"
+" مطوّر، أصول، اختبارات، أصول+اختبارات — مع وضع افتراضي لكل مستخدم واخت"
+"صار لوحة مفاتيح ودعم للجوال"
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__
 msgid "Off (no debug)"
-msgstr ""
+msgstr "متوقف (بدون تصحيح)"
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__1
 msgid "Developer Mode"
-msgstr ""
+msgstr "وضع المطوّر"
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__assets
 msgid "Assets (non-minified JS)"
-msgstr ""
+msgstr "الأصول (JS غير مصغّر)"
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__tests
 msgid "Tests (QUnit / Hoot)"
-msgstr ""
+msgstr "الاختبارات (QUnit / Hoot)"
 
 #. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
 #: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__assets,tests
 msgid "Assets + Tests"
-msgstr ""
+msgstr "الأصول + الاختبارات"
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_users__x_debug_default_mode
 msgid "Default Debug Mode"
-msgstr ""
+msgstr "وضع التصحيح الافتراضي"
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields,help:no_debug_quick_switcher.field_res_users__x_debug_default_mode
@@ -87,11 +99,14 @@ msgid ""
 "in the navbar will land on this mode automatically — no more typing ?d"
 "ebug=assets in the URL bar 30 times a day."
 msgstr ""
+"وضع التصحيح الذي يبدأ تلقائياً عند تسجيل الدخول. متوقف افتراضياً. سيفتح"
+" محوّل شريط التنقل على هذا الوضع تلقائياً — لا حاجة لكتابة ?debug=asset"
+"s في شريط العنوان ثلاثين مرة في اليوم."
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_config_settings__x_debug_switcher_disabled
 msgid "Disable Debug Switcher in Production"
-msgstr ""
+msgstr "تعطيل محوّل التصحيح في بيئة الإنتاج"
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields,help:no_debug_quick_switcher.field_res_config_settings__x_debug_switcher_disabled
@@ -101,64 +116,68 @@ msgid ""
 "ccidentally landing in Tests mode (which slows page loads dramatically"
 " by loading QUnit assets)."
 msgstr ""
+"عند التفعيل، يختفي محوّل شريط التنقل ويُتجاهل الوضع الافتراضي لكل مستخد"
+"م. يُنصح بتفعيله على قواعد بيانات الإنتاج — يمنع المستخدمين من الدخول "
+"بالخطأ إلى وضع الاختبارات (الذي يبطّئ تحميل الصفحات بشكل ملحوظ بسبب تح"
+"ميل أصول QUnit)."
 
 #. module: no_debug_quick_switcher
 #: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_debug_mode
 #: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_preferences_debug_mode
 msgid "Debug Mode Quick Switcher"
-msgstr ""
+msgstr "محوّل وضع التصحيح السريع"
 
 #. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.xml:0
 msgid "Debug Mode"
-msgstr ""
+msgstr "وضع التصحيح"
 
 #. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.xml:0
 msgid "Copy debug URL"
-msgstr ""
+msgstr "نسخ رابط التصحيح"
 
 #. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
 msgid "Off"
-msgstr ""
+msgstr "متوقف"
 
 #. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
 msgid "Developer"
-msgstr ""
+msgstr "مطوّر"
 
 #. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
 msgid "Assets"
-msgstr ""
+msgstr "أصول"
 
 #. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
 msgid "Tests"
-msgstr ""
+msgstr "اختبارات"
 
 #. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
 msgid "Dev"
-msgstr ""
+msgstr "مطوّر"
 
 #. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
 msgid "A+T"
-msgstr ""
+msgstr "أ+خ"
 
 #. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
 msgid "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> cycles · <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> jumps to Assets"
-msgstr ""
+msgstr "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> للتنقل بين الأوضاع · <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> للانتقال إلى الأصول"
 

@@ -26,7 +26,7 @@
  * services/debug_shortcut_service.js so we get namespacing + collision warnings
  * for free.
  */
-import { Component, useState, onMounted } from "@odoo/owl";
+import { Component, markup, useState, onMounted } from "@odoo/owl";
 import { Dropdown } from "@web/core/dropdown/dropdown";
 import { DropdownItem } from "@web/core/dropdown/dropdown_item";
 import { registry } from "@web/core/registry";
@@ -36,12 +36,15 @@ import { user } from "@web/core/user";
 import { useService } from "@web/core/utils/hooks";
 import { _t } from "@web/core/l10n/translation";
 
+// Labels are wrapped in _t() so the navbar dropdown + badge follow the
+// user's UI language. _t returns a LazyTranslated at module load that
+// resolves on stringification — safe to call at module top-level.
 export const DEBUG_MODES = [
-    { value: "", label: "Off", short: "Off", color: "#94A3B8" },
-    { value: "1", label: "Developer", short: "Dev", color: "#00A09D" },
-    { value: "assets", label: "Assets", short: "Assets", color: "#FF7F4F" },
-    { value: "tests", label: "Tests", short: "Tests", color: "#714B67" },
-    { value: "assets,tests", label: "Assets + Tests", short: "A+T", color: "#5A3A52" },
+    { value: "", label: _t("Off"), short: _t("Off"), color: "#94A3B8" },
+    { value: "1", label: _t("Developer"), short: _t("Dev"), color: "#00A09D" },
+    { value: "assets", label: _t("Assets"), short: _t("Assets"), color: "#FF7F4F" },
+    { value: "tests", label: _t("Tests"), short: _t("Tests"), color: "#714B67" },
+    { value: "assets,tests", label: _t("Assets + Tests"), short: _t("A+T"), color: "#5A3A52" },
 ];
 
 /**
@@ -182,6 +185,17 @@ export class DebugModeSwitcher extends Component {
 
     get tooltipText() {
         return _t("Current debug mode: %s", this.state.current.label);
+    }
+
+    // One translatable string for the whole hotkey hint — translators can move
+    // verbs/objects around for natural word order (esp. RTL). Per
+    // ODOO_GUIDELINES §12.6: NEVER split a sentence across multiple _t() calls.
+    // markup() lets us keep <kbd> styling without t-raw / unsafe HTML risk.
+    get hotkeyHintMarkup() {
+        return markup(_t(
+            "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> cycles · " +
+            "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> jumps to Assets"
+        ));
     }
 }
 
