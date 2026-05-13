@@ -12,11 +12,9 @@
  *   "tests"        → Developer + QUnit / Hoot test assets
  *   "assets,tests" → Developer + assets + tests
  *
- * All mode switches go through `activateDebug()` — a thin wrapper that calls
- * Odoo's canonical `router.pushState({ debug, reload: true })`, the exact same
- * primitive used by Settings → Developer Tools, the bug-icon debug menu, and
- * core/debug/debug_menu_items.js. We do not reinvent the navigation; we just
- * decide *when* to call it.
+ * Mode switches use direct URL navigation so we don't depend on Odoo's router
+ * module (which moved between v16/v17 -> v18/v19). Reading the current mode
+ * uses `odoo.debug` (the canonical global Odoo populates from the URL at boot).
  *
  * Per-user default (`x_debug_default_mode` on res.users) is auto-applied on
  * first land if the URL has no ?debug= AND the master switch is off. Both
@@ -30,9 +28,7 @@ import { Component, useState, onMounted } from "@odoo/owl";
 import { Dropdown } from "@web/core/dropdown/dropdown";
 import { DropdownItem } from "@web/core/dropdown/dropdown_item";
 import { registry } from "@web/core/registry";
-import { router } from "@web/core/browser/router";
 import { session } from "@web/session";
-import { user } from "@web/core/user";
 import { useService } from "@web/core/utils/hooks";
 import { _t } from "@web/core/l10n/translation";
 
@@ -45,9 +41,20 @@ export const DEBUG_MODES = [
 ];
 
 /**
- * True when `router.current.debug` represents the "off" state. Covers all the
- * shapes Odoo's router can produce: undefined (no param), 0 / "0" (what
- * activateDebug(0) writes), and "" (legacy `?debug=` with empty value).
+ * Read the current debug mode from the URL — works across all Odoo versions.
+ * Odoo populates `odoo.debug` from the URL at boot, so we use that when
+ * available and fall back to reading the URL directly.
+ */
+function readCurrentDebugRaw() {
+    if (typeof odoo !== "undefined" && odoo.debug !== undefined) {
+        return odoo.debug;
+    }
+    const params = new URLSearchParams(window.location.search);
+    return params.get("debug") ?? "";
+}
+
+/**
+ * True when the raw debug value represents "off". Covers undefined, 0, "0", "".
  */
 function isDebugOff(raw) {
     return raw === undefined || raw === null || raw === 0 || raw === "0" || raw === "";
@@ -62,33 +69,47 @@ function debugValueToFieldValue(raw) {
 }
 
 /**
- * Read the current debug mode from Odoo's router state. Returns the matching
- * entry from DEBUG_MODES, or "Off" when not in any debug mode.
- *
- * `router.current.debug` is Odoo's own parsed view of the URL — same source
- * of truth used by core/debug/debug_menu_items.js.
+ * Read the current debug mode. Returns the matching entry from DEBUG_MODES,
+ * or "Off" when not in any debug mode.
  */
 export function getCurrentMode() {
-    const fieldValue = debugValueToFieldValue(router.current.debug);
+    const fieldValue = debugValueToFieldValue(readCurrentDebugRaw());
     return DEBUG_MODES.find((m) => m.value === fieldValue) || DEBUG_MODES[0];
 }
 
 /**
- * Activate a debug mode — direct adoption of Odoo's canonical one-liner from
- * odoo/addons/web/static/src/webclient/settings_form_view/widgets/
- * res_config_dev_tool.js. Same call signature, same semantics:
+ * True when the URL has no explicit `?debug=` parameter at all (so the saved
+ * user pref can be applied without overriding an explicit URL).
+ */
+function urlHasDebugParam() {
+    return new URLSearchParams(window.location.search).has("debug");
+}
+
+/**
+ * Activate a debug mode by navigating to the same URL with `?debug=<value>`.
+ * Same end-result as Odoo's canonical `?debug=` URL pattern used by Settings ->
+ * Developer Tools (see odoo/addons/web/.../res_config_dev_tool.xml: `<a href="?debug=assets">`).
  *
- *   - 0              → Off (matches "Deactivate the developer mode")
- *   - 1              → Developer
- *   - "assets"       → Developer + assets
- *   - "tests"        → Developer + tests
- *   - "assets,tests" → Developer + assets + tests
+ *   - 0 / "" / undefined -> Off (`?debug=`)
+ *   - 1                  -> Developer (`?debug=1`)
+ *   - "assets"           -> Developer + assets
+ *   - "tests"            -> Developer + tests
+ *   - "assets,tests"     -> Developer + assets + tests
  *
- * We accept "" as an alias for 0 since our Selection field stores the empty
- * string for off.
+ * Always reloads the page so the new bundle is fetched.
  */
 export function activateDebug(value) {
-    router.pushState({ debug: value || 0 }, { reload: true });
+    const url = new URL(window.location.href);
+    const debugValue = value === 0 || value === undefined || value === null ? "" : String(value);
+    url.searchParams.set("debug", debugValue);
+    window.location.href = url.toString();
+}
+
+/**
+ * Alias used by debug_shortcut_service.js (Ctrl+Shift+A).
+ */
+export function applyMode(value) {
+    activateDebug(value);
 }
 
 /**
@@ -107,7 +128,7 @@ export class DebugModeSwitcher extends Component {
     static props = {};
 
     setup() {
-        this.ui = useService("ui");
+        this.user = useService("user");
         this.orm = useService("orm");
         this.state = useState({
             current: getCurrentMode(),
@@ -124,9 +145,8 @@ export class DebugModeSwitcher extends Component {
         if (session.x_debug_switcher_disabled) {
             return;
         }
-        if (router.current.debug === undefined) {
-            // No explicit ?debug= → auto-apply the saved default if any. This
-            // is what gives the "default mode" pref its meaning across sessions.
+        if (!urlHasDebugParam()) {
+            // No explicit ?debug= -> auto-apply the saved default if any.
             const def = session.x_debug_default_mode;
             if (def) {
                 // Defer one tick so we don't reload mid-render.
@@ -141,7 +161,7 @@ export class DebugModeSwitcher extends Component {
     }
 
     _writePrefIfChanged() {
-        const fieldValue = debugValueToFieldValue(router.current.debug);
+        const fieldValue = debugValueToFieldValue(readCurrentDebugRaw());
         // Don't overwrite the pref with a value the field can't represent
         // (e.g. someone hand-typed ?debug=foo).
         if (!DEBUG_MODES.find((m) => m.value === fieldValue)) {
@@ -152,7 +172,7 @@ export class DebugModeSwitcher extends Component {
             return;
         }
         this.orm
-            .write("res.users", [user.userId], { x_debug_default_mode: fieldValue })
+            .write("res.users", [this.user.userId], { x_debug_default_mode: fieldValue })
             .catch(() => {
                 /* non-fatal — pref just stays out of sync until next change */
             });
@@ -163,7 +183,7 @@ export class DebugModeSwitcher extends Component {
         // and the dropdown stay in sync. Errors don't block the switch — the
         // URL change is what matters this session.
         try {
-            await this.orm.write("res.users", [user.userId], {
+            await this.orm.write("res.users", [this.user.userId], {
                 x_debug_default_mode: modeValue,
             });
         } catch {
@@ -186,7 +206,7 @@ export class DebugModeSwitcher extends Component {
 }
 
 // Hide on production-disabled instances. We register unconditionally; the
-// component's own template renders nothing when session says disabled.
+// component itself bails when session says disabled.
 registry.category("systray").add(
     "no_debug_quick_switcher.DebugModeSwitcher",
     {
