@@ -33,6 +33,9 @@
             "no_debug_quick_switcher/static/src/services/debug_shortcut_service.js",
             "no_debug_quick_switcher/static/src/services/profile_save_patch.js",
         ],
+        "web.assets_unit_tests": [
+            "no_debug_quick_switcher/static/tests/**/*.test.js",
+        ],
     },
     "images": [
         "static/description/banner.png",
