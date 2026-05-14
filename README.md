@@ -10,6 +10,7 @@ Each Odoo major version lives on its own branch. Pick the one matching your serv
 |---|---|---|
 | 19.0 | [`19.0`](../../tree/19.0) | [`19.0-dev`](../../tree/19.0-dev) |
 | 18.0 | [`18.0`](../../tree/18.0) | [`18.0-dev`](../../tree/18.0-dev) |
+| 17.0 | [`17.0`](../../tree/17.0) | [`17.0-dev`](../../tree/17.0-dev) |
 
 The technical module name is **`no_debug_quick_switcher`** on every version branch.
 
@@ -53,7 +54,7 @@ Regional variants (e.g. `fr_BE`, `nl_BE`) inherit from the base language via Odo
 
 ## Compatibility
 
-Works on **Odoo 18.0 and 19.0**, Community and Enterprise editions. Python dependencies: none. Required Odoo module: `web`.
+Works on **Odoo 17.0, 18.0, and 19.0**, Community and Enterprise editions. Python dependencies: none. Required Odoo module: `web`.
 
 ## Repository Layout
 
