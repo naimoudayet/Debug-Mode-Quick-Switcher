@@ -1,9 +1,9 @@
-name: debugswitch-19
+name: debugswitch-17
 
 services:
   db:
     image: postgres:16
-    container_name: debugswitch-pg-19
+    container_name: debugswitch-pg-17
     environment:
       POSTGRES_USER: odoo
       POSTGRES_PASSWORD: odoo
@@ -13,11 +13,11 @@ services:
 
   odoo:
     build: .
-    container_name: debugswitch-odoo-19
+    container_name: debugswitch-odoo-17
     depends_on:
       - db
     ports:
-      - "13419:8069"
+      - "13417:8069"
     environment:
       HOST: db
       USER: odoo

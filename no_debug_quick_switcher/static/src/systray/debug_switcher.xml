@@ -3,38 +3,34 @@
 
     <t t-name="no_debug_quick_switcher.DebugModeSwitcher">
         <div class="o_no_debug_switcher" t-att-data-mode="state.current.value">
-            <Dropdown>
-                <button class="o-dropdown btn btn-link o_no_debug_switcher__btn"
-                        t-att-title="tooltipText">
+            <Dropdown togglerClass="'o_no_debug_switcher__btn btn btn-link'">
+                <t t-set-slot="toggler">
                     <span class="o_no_debug_switcher__badge"
-                          t-att-style="'background-color: ' + state.current.color">
+                          t-att-style="'background-color: ' + state.current.color"
+                          t-att-title="tooltipText">
                         <t t-esc="state.current.short"/>
                     </span>
-                </button>
-                <t t-set-slot="content">
-                    <div class="o_no_debug_switcher__menu">
-                        <div class="dropdown-header py-1 px-3 small text-muted">Debug Mode</div>
-                        <t t-foreach="modes" t-as="mode" t-key="mode.value">
-                            <DropdownItem onSelected="() => this.onSelectMode(mode.value)"
-                                          attrs="{ 'class': mode.value === state.current.value ? 'active' : '' }">
-                                <span class="d-inline-block o_no_debug_switcher__swatch me-2"
-                                      t-att-style="'background-color: ' + mode.color"/>
-                                <span t-esc="mode.label"/>
-                                <t t-if="mode.value === state.current.value">
-                                    <i class="fa fa-check ms-2 text-success"/>
-                                </t>
-                            </DropdownItem>
-                        </t>
-                        <div class="dropdown-divider"/>
-                        <DropdownItem onSelected="() => this.onCopyDebugUrl()">
-                            <i class="fa fa-link me-2 text-muted"/>Copy debug URL
-                        </DropdownItem>
-                        <div class="px-3 pt-1 pb-2 small text-muted o_no_debug_switcher__hotkey-hint">
-                            <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> cycles &#160;·&#160;
-                            <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> jumps to Assets
-                        </div>
-                    </div>
                 </t>
+                <div class="o_no_debug_switcher__menu">
+                    <div class="dropdown-header py-1 px-3 small text-muted">Debug Mode</div>
+                    <t t-foreach="modes" t-as="mode" t-key="mode.value">
+                        <DropdownItem onSelected="() => this.onSelectMode(mode.value)"
+                                      class="mode.value === state.current.value ? 'active' : ''">
+                            <span class="d-inline-block o_no_debug_switcher__swatch me-2"
+                                  t-att-style="'background-color: ' + mode.color"/>
+                            <span t-esc="mode.label"/>
+                            <t t-if="mode.value === state.current.value">
+                                <i class="fa fa-check ms-2 text-success"/>
+                            </t>
+                        </DropdownItem>
+                    </t>
+                    <div class="dropdown-divider"/>
+                    <DropdownItem onSelected="() => this.onCopyDebugUrl()">
+                        <i class="fa fa-link me-2 text-muted"/>Copy debug URL
+                    </DropdownItem>
+                    <div class="px-3 pt-1 pb-2 small text-muted o_no_debug_switcher__hotkey-hint"
+                         t-out="hotkeyHintMarkup"/>
+                </div>
             </Dropdown>
         </div>
     </t>

@@ -1,3 +1,2 @@
-FROM odoo:19
-USER root
+FROM odoo:17
 USER odoo
