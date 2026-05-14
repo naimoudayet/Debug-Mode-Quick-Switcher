@@ -21,7 +21,7 @@ import { session } from "@web/session";
 import {
     DEBUG_MODES,
     cycleToNextMode,
-    applyMode,
+    activateDebug,
     getCurrentMode,
 } from "../systray/debug_switcher";
 
@@ -47,7 +47,7 @@ const debugShortcutService = {
             global: true,
             bypassEditableProtection: false,
         });
-        hotkey.add("control+shift+a", () => applyMode("assets"), {
+        hotkey.add("control+shift+a", () => activateDebug("assets"), {
             global: true,
             bypassEditableProtection: false,
         });
@@ -57,4 +57,4 @@ const debugShortcutService = {
 registry.category("services").add("no_debug_quick_switcher.shortcuts", debugShortcutService);
 
 // Sanity exports — available for tests + browser console.
-export { DEBUG_MODES, cycleToNextMode, applyMode, getCurrentMode };
+export { DEBUG_MODES, cycleToNextMode, activateDebug, getCurrentMode };

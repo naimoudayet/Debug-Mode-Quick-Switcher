@@ -27,7 +27,7 @@ Odoo ships one debug button (Settings → Activate Developer Mode) that toggles 
 
 | Field | Value |
 |---|---|
-| Odoo Version | 19.0 |
+| Odoo Version | 16.0 |
 | License | LGPL-3 |
 | Dependencies | `web` |
 | Field Prefix | `x_` |
@@ -57,11 +57,11 @@ Odoo ships one debug button (Settings → Activate Developer Mode) that toggles 
 docker-compose up -d
 ```
 
-Odoo: http://localhost:13419
+Odoo: http://localhost:13416
 
 ## Compatibility
 
-- Odoo 19.0 Community + Enterprise
+- Odoo 16.0 Community + Enterprise
 
 ## Author
 

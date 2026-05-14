@@ -9,12 +9,28 @@
  *   ""             → Off
  *   "1"            → Developer
  *   "assets"       → Developer + non-minified JS bundles
- *   "tests"        → Developer + QUnit / Hoot test assets
+ *   "tests"        → Developer + QUnit test assets
  *   "assets,tests" → Developer + assets + tests
  *
- * Mode switches use direct URL navigation so we don't depend on Odoo's router
- * module (which moved between v16/v17 -> v18/v19). Reading the current mode
- * uses `odoo.debug` (the canonical global Odoo populates from the URL at boot).
+ * All mode switches mirror the canonical mechanism used by Odoo 16's own
+ * Settings → Developer Tools section: a full-page navigation to
+ * `?debug=<mode>`. We deliberately do NOT use `router.pushState` — in v16 the
+ * router stores state in the URL *hash* (`#`), but Odoo selects the asset
+ * bundles (assets / tests) at boot from the *query string* (`?`). A
+ * router push would update the hash without switching the JS bundle, so the
+ * mode change would silently fail to take effect. Plain anchor navigation
+ * does a real page load and gets the right bundle. Same approach as
+ * `addons/web/static/src/webclient/settings_form_view/widgets/res_config_dev_tool.xml`.
+ *
+ * Current-mode reads go through `odoo.debug` (the global string Odoo sets at
+ * boot from the URL), again matching `res_config_dev_tool.js` exactly.
+ *
+ * v16 i18n note: in v16 `_t` is *eager* — it resolves at call time, so calling
+ * it at module-load (DEBUG_MODES, hotkeyHintMarkup) would freeze the source
+ * English strings before translations finish loading. v16 ships `_lt` for that
+ * case — a LazyTranslatedString that resolves on stringification, equivalent to
+ * what `_t` became in v18+. We use `_lt` at module top-level and `_t` inside
+ * methods (which run after the translation registry is populated).
  *
  * Per-user default (`x_debug_default_mode` on res.users) is auto-applied on
  * first land if the URL has no ?debug= AND the master switch is off. Both
@@ -24,92 +40,55 @@
  * services/debug_shortcut_service.js so we get namespacing + collision warnings
  * for free.
  */
-import { Component, useState, onMounted } from "@odoo/owl";
+import { Component, markup, useState, onMounted } from "@odoo/owl";
 import { Dropdown } from "@web/core/dropdown/dropdown";
 import { DropdownItem } from "@web/core/dropdown/dropdown_item";
 import { registry } from "@web/core/registry";
 import { session } from "@web/session";
 import { useService } from "@web/core/utils/hooks";
-import { _t } from "@web/core/l10n/translation";
+import { _lt, _t } from "@web/core/l10n/translation";
+import { sprintf } from "@web/core/utils/strings";
 
+// Labels are wrapped in _lt() so the navbar dropdown + badge follow the
+// user's UI language. _lt returns a LazyTranslatedString at module load
+// that resolves on stringification — safe to call at module top-level.
 export const DEBUG_MODES = [
-    { value: "", label: "Off", short: "Off", color: "#94A3B8" },
-    { value: "1", label: "Developer", short: "Dev", color: "#00A09D" },
-    { value: "assets", label: "Assets", short: "Assets", color: "#FF7F4F" },
-    { value: "tests", label: "Tests", short: "Tests", color: "#714B67" },
-    { value: "assets,tests", label: "Assets + Tests", short: "A+T", color: "#5A3A52" },
+    { value: "", label: _lt("Off"), short: _lt("Off"), color: "#94A3B8" },
+    { value: "1", label: _lt("Developer"), short: _lt("Dev"), color: "#00A09D" },
+    { value: "assets", label: _lt("Assets"), short: _lt("Assets"), color: "#FF7F4F" },
+    { value: "tests", label: _lt("Tests"), short: _lt("Tests"), color: "#714B67" },
+    { value: "assets,tests", label: _lt("Assets + Tests"), short: _lt("A+T"), color: "#5A3A52" },
 ];
 
 /**
- * Read the current debug mode from the URL — works across all Odoo versions.
- * Odoo populates `odoo.debug` from the URL at boot, so we use that when
- * available and fall back to reading the URL directly.
- */
-function readCurrentDebugRaw() {
-    if (typeof odoo !== "undefined" && odoo.debug !== undefined) {
-        return odoo.debug;
-    }
-    const params = new URLSearchParams(window.location.search);
-    return params.get("debug") ?? "";
-}
-
-/**
- * True when the raw debug value represents "off". Covers undefined, 0, "0", "".
- */
-function isDebugOff(raw) {
-    return raw === undefined || raw === null || raw === 0 || raw === "0" || raw === "";
-}
-
-/**
- * Map a router-style debug value to the literal stored in our Selection field
- * on res.users (which uses "" for off, not 0).
- */
-function debugValueToFieldValue(raw) {
-    return isDebugOff(raw) ? "" : String(raw);
-}
-
-/**
- * Read the current debug mode. Returns the matching entry from DEBUG_MODES,
- * or "Off" when not in any debug mode.
+ * The exact string Odoo's boot sets from the URL: "", "1", "assets", "tests",
+ * or "assets,tests". Same global the v16 Settings dev-tool widget reads.
+ *
+ * Returns the entry from DEBUG_MODES, or "Off" when not in any debug mode.
  */
 export function getCurrentMode() {
-    const fieldValue = debugValueToFieldValue(readCurrentDebugRaw());
-    return DEBUG_MODES.find((m) => m.value === fieldValue) || DEBUG_MODES[0];
+    const value = (typeof odoo !== "undefined" && odoo.debug) || "";
+    return DEBUG_MODES.find((m) => m.value === value) || DEBUG_MODES[0];
 }
 
 /**
- * True when the URL has no explicit `?debug=` parameter at all (so the saved
- * user pref can be applied without overriding an explicit URL).
- */
-function urlHasDebugParam() {
-    return new URLSearchParams(window.location.search).has("debug");
-}
-
-/**
- * Activate a debug mode by navigating to the same URL with `?debug=<value>`.
- * Same end-result as Odoo's canonical `?debug=` URL pattern used by Settings ->
- * Developer Tools (see odoo/addons/web/.../res_config_dev_tool.xml: `<a href="?debug=assets">`).
+ * Activate a debug mode by navigating to `?debug=<value>` — the exact pattern
+ * used by Odoo 16's Settings → Developer Tools anchors. Full page load is
+ * required because the JS asset bundle (regular vs assets vs assets+tests) is
+ * picked at boot from the query string, not at runtime.
  *
- *   - 0 / "" / undefined -> Off (`?debug=`)
- *   - 1                  -> Developer (`?debug=1`)
- *   - "assets"           -> Developer + assets
- *   - "tests"            -> Developer + tests
- *   - "assets,tests"     -> Developer + assets + tests
- *
- * Always reloads the page so the new bundle is fetched.
+ *   - 0 / ""         → Off (matches "Deactivate the developer mode")
+ *   - "1"            → Developer
+ *   - "assets"       → Developer + assets
+ *   - "tests"        → Developer + tests
+ *   - "assets,tests" → Developer + assets + tests
  */
 export function activateDebug(value) {
     const url = new URL(window.location.href);
-    const debugValue = value === 0 || value === undefined || value === null ? "" : String(value);
-    url.searchParams.set("debug", debugValue);
+    // Empty string for "off" — same literal as the Settings widget's
+    // <a href="?debug="> "Deactivate the developer mode" anchor.
+    url.searchParams.set("debug", value && value !== 0 ? String(value) : "");
     window.location.href = url.toString();
-}
-
-/**
- * Alias used by debug_shortcut_service.js (Ctrl+Shift+A).
- */
-export function applyMode(value) {
-    activateDebug(value);
 }
 
 /**
@@ -122,14 +101,20 @@ export function cycleToNextMode() {
     activateDebug(next.value);
 }
 
+/** True when the current URL has no `?debug=` parameter at all (vs empty string). */
+function urlHasDebugParam() {
+    return new URL(window.location.href).searchParams.has("debug");
+}
+
 export class DebugModeSwitcher extends Component {
     static template = "no_debug_quick_switcher.DebugModeSwitcher";
     static components = { Dropdown, DropdownItem };
     static props = {};
 
     setup() {
-        this.user = useService("user");
+        this.ui = useService("ui");
         this.orm = useService("orm");
+        this.userService = useService("user");
         this.state = useState({
             current: getCurrentMode(),
         });
@@ -146,7 +131,8 @@ export class DebugModeSwitcher extends Component {
             return;
         }
         if (!urlHasDebugParam()) {
-            // No explicit ?debug= -> auto-apply the saved default if any.
+            // No explicit ?debug= → auto-apply the saved default if any. This
+            // is what gives the "default mode" pref its meaning across sessions.
             const def = session.x_debug_default_mode;
             if (def) {
                 // Defer one tick so we don't reload mid-render.
@@ -161,18 +147,14 @@ export class DebugModeSwitcher extends Component {
     }
 
     _writePrefIfChanged() {
-        const fieldValue = debugValueToFieldValue(readCurrentDebugRaw());
-        // Don't overwrite the pref with a value the field can't represent
-        // (e.g. someone hand-typed ?debug=foo).
-        if (!DEBUG_MODES.find((m) => m.value === fieldValue)) {
-            return;
-        }
+        const current = getCurrentMode();
+        const fieldValue = current.value;
         const sessionValue = session.x_debug_default_mode || "";
         if (fieldValue === sessionValue) {
             return;
         }
         this.orm
-            .write("res.users", [this.user.userId], { x_debug_default_mode: fieldValue })
+            .write("res.users", [this.userService.userId], { x_debug_default_mode: fieldValue })
             .catch(() => {
                 /* non-fatal — pref just stays out of sync until next change */
             });
@@ -183,7 +165,7 @@ export class DebugModeSwitcher extends Component {
         // and the dropdown stay in sync. Errors don't block the switch — the
         // URL change is what matters this session.
         try {
-            await this.orm.write("res.users", [this.user.userId], {
+            await this.orm.write("res.users", [this.userService.userId], {
                 x_debug_default_mode: modeValue,
             });
         } catch {
@@ -201,12 +183,25 @@ export class DebugModeSwitcher extends Component {
     }
 
     get tooltipText() {
-        return _t("Current debug mode: %s", this.state.current.label);
+        // v16 _t is eager but safe here — getters run on render, after the
+        // translation registry is populated. sprintf interpolates the label.
+        return sprintf(_t("Current debug mode: %s"), this.state.current.label.toString());
+    }
+
+    // One translatable string for the whole hotkey hint — translators can move
+    // verbs/objects around for natural word order (esp. RTL). Per
+    // ODOO_GUIDELINES §12.6: NEVER split a sentence across multiple _t() calls.
+    // markup() lets us keep <kbd> styling without t-raw / unsafe HTML risk.
+    get hotkeyHintMarkup() {
+        return markup(_t(
+            "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> cycles · " +
+            "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> jumps to Assets"
+        ));
     }
 }
 
 // Hide on production-disabled instances. We register unconditionally; the
-// component itself bails when session says disabled.
+// component's own template renders nothing when session says disabled.
 registry.category("systray").add(
     "no_debug_quick_switcher.DebugModeSwitcher",
     {
