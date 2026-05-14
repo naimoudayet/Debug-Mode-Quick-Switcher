@@ -12,7 +12,7 @@
                    "modes (Assets / Tests) keeps you from forgetting you're "
                    "slowing the app down. Global 'disable in production' master "
                    "switch keeps the module dormant on prod databases.",
-    "version": "18.0.1.1.0",
+    "version": "18.0.1.3.0",
     "category": "Productivity",
     "website": "https://www.oudayet.com",
     "author": "Naim OUDAYET",
@@ -32,6 +32,9 @@
             "no_debug_quick_switcher/static/src/systray/debug_switcher.js",
             "no_debug_quick_switcher/static/src/services/debug_shortcut_service.js",
             "no_debug_quick_switcher/static/src/services/profile_save_patch.js",
+        ],
+        "web.assets_unit_tests": [
+            "no_debug_quick_switcher/static/tests/**/*.test.js",
         ],
     },
     "images": [
