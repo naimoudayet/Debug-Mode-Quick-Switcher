@@ -5,6 +5,11 @@ All notable changes to **Debug Mode Quick Switcher** for Odoo 17.0 are documente
 This file follows the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format.
 Versions use Odoo's `<odoo_version>.<module_major>.<module_minor>.<module_patch>` scheme.
 
+## [17.0.1.3.1] - 2026-06-01
+
+### Changed
+- Updated the Access Pass cross-promo card price from $79 to $99 to match its current price.
+
 ## [17.0.1.3.0] - 2026-05-14
 
 ### Added
