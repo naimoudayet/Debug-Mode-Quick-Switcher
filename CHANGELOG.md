@@ -5,6 +5,11 @@ All notable changes to **Debug Mode Quick Switcher** for Odoo 18.0 are documente
 This file follows the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format.
 Versions use Odoo's `<odoo_version>.<module_major>.<module_minor>.<module_patch>` scheme.
 
+## [18.0.1.3.2] - 2026-06-02
+
+### Changed
+- Removed the cross-promotion ("More Modules") section from the store description (index.html).
+
 ## [18.0.1.3.1] - 2026-06-01
 
 ### Changed
