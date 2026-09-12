@@ -1,5 +1,10 @@
 # Debug Mode Quick Switcher
 
+![License](https://img.shields.io/badge/license-LGPL--3-blue)
+![Odoo](https://img.shields.io/badge/Odoo-16.0-blueviolet)
+![Languages](https://img.shields.io/badge/languages-9-orange)
+![Version](https://img.shields.io/badge/version-16.0.1.3.2-informational)
+
 One-click navbar dropdown for Odoo's 5 debug modes — Off, Dev, Assets, Tests, Assets+Tests — with per-user default, hotkey, mobile support, and a page-edge stripe in heavy modes.
 
 ## Why
@@ -16,6 +21,8 @@ Odoo ships one debug button (Settings → Activate Developer Mode) that toggles 
 - **Production master switch** — global "disable" param hides the switcher and ignores per-user defaults. Recommended ON for production.
 - **Mobile-ready** — works on small viewports.
 
+- **Translated into 9 languages** -- English, French, Spanish, German, Dutch, Portuguese (BR), Italian, Chinese (Simplified), Arabic. Each user sees the switcher in their own Odoo language.
+
 ## How It Works
 
 - A persistent OWL component is registered into `registry.category("systray")` and renders the dropdown in the navbar.
@@ -28,9 +35,11 @@ Odoo ships one debug button (Settings → Activate Developer Mode) that toggles 
 | Field | Value |
 |---|---|
 | Odoo Version | 16.0 |
+| Module Version | 16.0.1.3.2 |
 | License | LGPL-3 |
 | Dependencies | `web` |
 | Field Prefix | `x_` |
+| Languages | EN, FR, ES, DE, NL, PT-BR, IT, ZH-CN, AR |
 | Backend assets | OWL component + SCSS + service (~280 lines) |
 
 ## Fields Added
@@ -44,6 +53,27 @@ Odoo ships one debug button (Settings → Activate Developer Mode) that toggles 
 | Key | Type | Description |
 |---|---|---|
 | `no_debug_quick_switcher.disabled` | Boolean | Set "True" to hide the switcher and ignore defaults — typically on production. |
+
+## Languages
+
+Ships with translations for:
+
+| Code     | Language                |
+|----------|-------------------------|
+| `en_US`  | English (source)        |
+| `fr`     | French                  |
+| `es`     | Spanish                 |
+| `de`     | German                  |
+| `nl`     | Dutch                   |
+| `pt_BR`  | Portuguese (Brazil)     |
+| `it`     | Italian                 |
+| `zh_CN`  | Chinese (Simplified)    |
+| `ar`     | Arabic                  |
+
+Each user sees the switcher in the language set in **Preferences > Language**. Regional
+variants (e.g. `fr_BE`, `nl_BE`) inherit from the base language via Odoo's standard
+fallback. To add a new language, drop a `<code>.po` file into `i18n/` -- the canonical
+template is `i18n/no_debug_quick_switcher.pot`.
 
 ## Installation
 
