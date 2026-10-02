@@ -5,6 +5,12 @@ All notable changes to **Debug Mode Quick Switcher** for Odoo 16.0 are documente
 This file follows the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format.
 Versions use Odoo's `<odoo_version>.<module_major>.<module_minor>.<module_patch>` scheme.
 
+## [16.0.1.3.3] - 2026-10-02
+
+### Fixed
+- The coloured stripe along the top of the page in Assets and Tests modes never showed on Odoo 16: Odoo 16 starts the module's service before the page body exists. The mode is now marked once the page is ready. A new browser test opens a page in Assets mode and checks it.
+- The listing promised a bug-icon badge (the switcher is a coloured badge naming the mode) and pointed to "My Profile" for the default mode; it is set in Preferences.
+
 ## [16.0.1.3.2] - 2026-06-02
 
 ### Changed
