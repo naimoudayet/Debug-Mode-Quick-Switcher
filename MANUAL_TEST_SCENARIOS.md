@@ -19,7 +19,7 @@ Log in as an Internal User with Settings access; the switcher is in the systray 
 3. Switch to **Developer**: the stripe is gone. Switch to **Assets + Tests**: the stripe is back.
 
 ## 4. Per-user default
-1. **My Profile** > set **Default Debug Mode** to *Assets* > Save.
+1. **My Preferences** > set **Default Debug Mode** to *Assets* > Save.
 2. Log out and back in: the session starts in Assets mode without touching the dropdown.
 3. Set it back to *Off* and re-login: the session starts clean.
 

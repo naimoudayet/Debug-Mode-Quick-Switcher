@@ -79,7 +79,7 @@ template is `i18n/no_debug_quick_switcher.pot`.
 
 1. Copy `no_debug_quick_switcher` into your Odoo addons path.
 2. **Apps → Update Apps List** → search "Debug Mode Quick Switcher" → **Install**.
-3. (Optional) Open **My Profile** → set your default debug mode → save.
+3. (Optional) Open **My Preferences** → set your default debug mode → save.
 
 ## Docker Setup (Development)
 
