@@ -15,6 +15,7 @@ Versions use Odoo's `<odoo_version>.<module_major>.<module_minor>.<module_patch>
 - On Odoo 20 users could not save their own Default Debug Mode in their preferences; Odoo 20 needs the field declared for that.
 - On Odoo 20 the switcher was missing from the top bar: its component was rejected when the bar was built.
 - New tests: the production switch both ways and in what the web client receives, a user reading their own preference, and a test that mounts the switcher itself.
+- The listing promised a bug-icon badge (the switcher is a coloured badge naming the mode) and pointed to "My Profile" for the default mode; it is set in My Preferences.
 
 ## [19.0.1.3.2] - 2026-06-02
 
