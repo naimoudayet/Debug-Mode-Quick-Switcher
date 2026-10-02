@@ -3,7 +3,7 @@
 ![License](https://img.shields.io/badge/license-LGPL--3-blue)
 ![Odoo](https://img.shields.io/badge/Odoo-16.0-blueviolet)
 ![Languages](https://img.shields.io/badge/languages-9-orange)
-![Version](https://img.shields.io/badge/version-16.0.1.3.2-informational)
+![Version](https://img.shields.io/badge/version-16.0.1.3.3-informational)
 
 One-click navbar dropdown for Odoo's 5 debug modes — Off, Dev, Assets, Tests, Assets+Tests — with per-user default, hotkey, mobile support, and a page-edge stripe in heavy modes.
 
@@ -35,7 +35,7 @@ Odoo ships one debug button (Settings → Activate Developer Mode) that toggles 
 | Field | Value |
 |---|---|
 | Odoo Version | 16.0 |
-| Module Version | 16.0.1.3.2 |
+| Module Version | 16.0.1.3.3 |
 | License | LGPL-3 |
 | Dependencies | `web` |
 | Field Prefix | `x_` |

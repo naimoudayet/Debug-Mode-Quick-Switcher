@@ -4,15 +4,15 @@
     "name": "Debug Mode Quick Switcher",
     "summary": "One-click navbar switcher for Odoo's 5 debug modes — Off, Dev, Assets, Tests, Assets+Tests — with per-user default, hotkey, and mobile support",
     "description": "Debug Mode Quick Switcher replaces the URL-typing dance. A "
-                   "navbar dropdown shows the current debug mode with a colour "
-                   "badge and lets you jump to any of the 5 modes in one click. "
-                   "Per-user default is remembered across sessions on your "
-                   "res.users record. Ctrl+Shift+D cycles modes; Ctrl+Shift+A "
-                   "jumps to Assets. Mobile-ready. A page-edge stripe in heavy "
-                   "modes (Assets / Tests) keeps you from forgetting you're "
-                   "slowing the app down. Global 'disable in production' master "
-                   "switch keeps the module dormant on prod databases.",
-    "version": "16.0.1.3.2",
+    "navbar dropdown shows the current debug mode with a colour "
+    "badge and lets you jump to any of the 5 modes in one click. "
+    "Per-user default is remembered across sessions on your "
+    "res.users record. Ctrl+Shift+D cycles modes; Ctrl+Shift+A "
+    "jumps to Assets. Mobile-ready. A page-edge stripe in heavy "
+    "modes (Assets / Tests) keeps you from forgetting you're "
+    "slowing the app down. Global 'disable in production' master "
+    "switch keeps the module dormant on prod databases.",
+    "version": "16.0.1.3.3",
     "category": "Productivity",
     "website": "https://www.oudayet.com",
     "author": "Naim OUDAYET",

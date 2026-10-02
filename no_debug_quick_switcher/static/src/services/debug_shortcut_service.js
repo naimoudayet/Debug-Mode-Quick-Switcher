@@ -16,6 +16,7 @@
  * Odoo's namespaced collision detection + automatic disable in input fields,
  * so power users don't fire the cycle while typing into the search bar.
  */
+import { whenReady } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { session } from "@web/session";
 import {
@@ -30,12 +31,12 @@ const debugShortcutService = {
 
     start(env, { hotkey }) {
         // 1. Reflect current mode on <body> so the SCSS stripe lights up.
-        try {
-            const current = getCurrentMode();
-            document.body.dataset.debug = current.value;
-        } catch {
-            /* SSR / non-browser env — never happens in Odoo backend. */
-        }
+        //    Odoo 16 starts services before the document body exists (start.js
+        //    awaits whenReady() only after startServices): wait for it. Setting
+        //    it right away threw on a null body, silently, so no stripe ever.
+        whenReady().then(() => {
+            document.body.dataset.debug = getCurrentMode().value;
+        });
 
         // 2. Honour the kill-switch — register no hotkeys when disabled in production.
         if (session.x_debug_switcher_disabled) {
@@ -54,7 +55,9 @@ const debugShortcutService = {
     },
 };
 
-registry.category("services").add("no_debug_quick_switcher.shortcuts", debugShortcutService);
+registry
+    .category("services")
+    .add("no_debug_quick_switcher.shortcuts", debugShortcutService);
 
 // Sanity exports — available for tests + browser console.
 export { DEBUG_MODES, cycleToNextMode, activateDebug, getCurrentMode };
