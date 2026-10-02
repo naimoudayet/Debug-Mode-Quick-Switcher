@@ -19,6 +19,9 @@ class ResUsers(models.Model):
         ],
         string="Default Debug Mode",
         default="",
+        # Odoo 20: each user reads and saves this on their own record (19 used
+        # the SELF_READABLE_FIELDS / SELF_WRITEABLE_FIELDS properties, gone on 20).
+        user_writeable=True,
         # Labels deliberately kept short so they match the navbar systray
         # dropdown exactly (it uses the same five _t() strings). The help
         # text stays unchanged from the previous release so existing
@@ -27,11 +30,3 @@ class ResUsers(models.Model):
              "switcher in the navbar will land on this mode automatically — "
              "no more typing ?debug=assets in the URL bar 30 times a day.",
     )
-
-    @property
-    def SELF_READABLE_FIELDS(self):
-        return super().SELF_READABLE_FIELDS + ["x_debug_default_mode"]
-
-    @property
-    def SELF_WRITEABLE_FIELDS(self):
-        return super().SELF_WRITEABLE_FIELDS + ["x_debug_default_mode"]

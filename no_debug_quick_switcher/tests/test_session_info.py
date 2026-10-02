@@ -50,3 +50,15 @@ class TestSessionInfoOverride(HttpCase):
         result = self._read_session_info()
         self.assertIn("x_debug_switcher_disabled", result)
         self.assertIsInstance(result["x_debug_switcher_disabled"], bool)
+
+    def test_killswitch_value_follows_the_setting(self):
+        """Switched on in Settings, the payload tells the web client to hide
+        the switcher; switched off, to show it."""
+        self.env["res.config.settings"].create(
+            {"x_debug_switcher_disabled": True}
+        ).execute()
+        self.assertIs(self._read_session_info()["x_debug_switcher_disabled"], True)
+        self.env["res.config.settings"].create(
+            {"x_debug_switcher_disabled": False}
+        ).execute()
+        self.assertIs(self._read_session_info()["x_debug_switcher_disabled"], False)

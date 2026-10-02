@@ -26,12 +26,11 @@
  * services/debug_shortcut_service.js so we get namespacing + collision warnings
  * for free.
  */
-import { Component, markup, onMounted, proxy, usePlugin } from "@odoo/owl";
+import { Component, markup, onMounted, proxy, useProps } from "@odoo/owl";
 import { Dropdown } from "@web/core/dropdown/dropdown";
 import { DropdownItem } from "@web/core/dropdown/dropdown_item";
 import { registry } from "@web/core/registry";
 import { router } from "@web/core/browser/router";
-import { UIPlugin } from "@web/core/ui/ui_plugin";
 import { session } from "@web/session";
 import { user } from "@web/core/user";
 import { useService } from "@web/core/utils/hooks";
@@ -108,10 +107,11 @@ export function cycleToNextMode() {
 export class DebugModeSwitcher extends Component {
     static template = "no_debug_quick_switcher.DebugModeSwitcher";
     static components = { Dropdown, DropdownItem };
-    static props = {};
+    // OWL 3: a static props schema throws at mount, and the navbar's error
+    // handler then drops the systray item without a trace.
+    props = useProps({});
 
     setup() {
-        this.ui = usePlugin(UIPlugin);
         this.orm = useService("orm");
         this.state = proxy({
             current: getCurrentMode(),

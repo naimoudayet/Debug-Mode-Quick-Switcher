@@ -53,19 +53,14 @@ class TestDebugSwitcherModels(TransactionCase):
                 f"Selection value {value!r} did not persist",
             )
 
-    def test_field_in_self_readable(self):
+    def test_users_can_read_own_preference(self):
         """Users must be able to read their own preference (My Profile)."""
-        self.assertIn(
-            "x_debug_default_mode",
-            self.test_user.SELF_READABLE_FIELDS,
+        self.test_user.x_debug_default_mode = "tests"
+        values = self.test_user.with_user(self.test_user).read(
+            ["x_debug_default_mode"]
         )
+        self.assertEqual(values[0]["x_debug_default_mode"], "tests")
 
-    def test_field_in_self_writeable(self):
-        """Users must be able to write their own preference (My Profile)."""
-        self.assertIn(
-            "x_debug_default_mode",
-            self.test_user.SELF_WRITEABLE_FIELDS,
-        )
 
     def test_users_can_write_own_preference(self):
         """End-to-end: the user record itself, acting as itself, can save."""
@@ -92,14 +87,11 @@ class TestDebugSwitcherModels(TransactionCase):
             "x_debug_switcher_disabled": True,
         })
         settings.execute()
-        stored = self.IrConfig.get_param(self.KILLSWITCH_KEY, "")
-        self.assertEqual(stored, "True")
+        self.assertTrue(self.IrConfig.get_bool(self.KILLSWITCH_KEY))
 
         # Flip back to False and confirm round-trip.
         settings = self.env["res.config.settings"].create({
             "x_debug_switcher_disabled": False,
         })
         settings.execute()
-        stored = self.IrConfig.get_param(self.KILLSWITCH_KEY, "")
-        # When unset/false, value is either missing or literal "False"
-        self.assertIn(stored, ("False", "", False))
+        self.assertFalse(self.IrConfig.get_bool(self.KILLSWITCH_KEY))

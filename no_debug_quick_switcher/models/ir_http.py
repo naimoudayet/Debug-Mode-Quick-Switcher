@@ -14,7 +14,7 @@ class IrHttp(models.AbstractModel):
         result = super().session_info()
         params = self.env["ir.config_parameter"].sudo()
         result["x_debug_default_mode"] = self.env.user.x_debug_default_mode or ""
-        result["x_debug_switcher_disabled"] = bool(
-            params.get_param("no_debug_quick_switcher.disabled", False)
+        result["x_debug_switcher_disabled"] = params.get_bool(
+            "no_debug_quick_switcher.disabled"
         )
         return result

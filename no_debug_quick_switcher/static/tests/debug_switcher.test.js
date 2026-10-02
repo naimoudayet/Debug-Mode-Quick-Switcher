@@ -12,11 +12,14 @@
  * the OWL tree, which is where regressions most often live.
  */
 import { describe, expect, test } from "@odoo/hoot";
-import { patchWithCleanup } from "@web/../tests/web_test_helpers";
+import { click, queryAllTexts, queryOne } from "@odoo/hoot-dom";
+import { animationFrame } from "@odoo/hoot-mock";
+import { mountWithCleanup, patchWithCleanup } from "@web/../tests/web_test_helpers";
 import { router } from "@web/core/browser/router";
 
 import {
     DEBUG_MODES,
+    DebugModeSwitcher,
     activateDebug,
     cycleToNextMode,
     getCurrentMode,
@@ -148,5 +151,27 @@ describe("activateDebug()", () => {
 
         activateDebug(undefined);
         expect(calls.at(-1)).toBe(0);
+    });
+});
+
+describe("DebugModeSwitcher (mounted)", () => {
+    // The specs above test the pure functions only. On Odoo 20 a static props
+    // schema made the component throw at mount; the navbar's error handler then
+    // dropped it, so the switcher was simply missing while every spec passed.
+    test("shows the current mode and lists the five modes", async () => {
+        patchWithCleanup(router, { current: { debug: undefined } });
+        await mountWithCleanup(DebugModeSwitcher);
+        expect(".o_no_debug_switcher__badge").toHaveText("Off");
+        await click(".o_no_debug_switcher__btn");
+        await animationFrame();
+        expect(queryAllTexts(".o_no_debug_switcher__menu .dropdown-item")).toEqual([
+            "Off",
+            "Developer",
+            "Assets",
+            "Tests",
+            "Assets + Tests",
+            "Copy debug URL",
+        ]);
+        expect(queryOne(".o_no_debug_switcher__menu .dropdown-item.active")).toHaveText("Off");
     });
 });
