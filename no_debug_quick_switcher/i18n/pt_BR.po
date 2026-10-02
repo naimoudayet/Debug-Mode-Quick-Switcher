@@ -47,6 +47,11 @@ msgid "Assets + Tests"
 msgstr "Recursos + Testes"
 
 #. module: no_debug_quick_switcher
+#: model:ir.model,name:no_debug_quick_switcher.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configurações"
+
+#. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.xml:0
 msgid "Copy debug URL"
@@ -65,10 +70,32 @@ msgid "Debug Mode"
 msgstr "Modo Depuração"
 
 #. module: no_debug_quick_switcher
+#: model:ir.module.module,shortdesc:base.module_no_debug_quick_switcher
 #: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_debug_mode
 #: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_preferences_debug_mode
 msgid "Debug Mode Quick Switcher"
 msgstr "Alternador Rápido de Modo Depuração"
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,description:base.module_no_debug_quick_switcher
+msgid ""
+"Debug Mode Quick Switcher replaces the URL-typing dance. A navbar dropdown "
+"shows the current debug mode with a colour badge and lets you jump to any of"
+" the 5 modes in one click. Per-user default is remembered across sessions on"
+" your res.users record. Ctrl+Shift+D cycles modes; Ctrl+Shift+A jumps to "
+"Assets. Mobile-ready. A page-edge stripe in heavy modes (Assets / Tests) "
+"keeps you from forgetting you're slowing the app down. Global 'disable in "
+"production' master switch keeps the module dormant on prod databases."
+msgstr ""
+"Alternador Rápido de Modo Depuração substitui a digitação manual da URL. Um "
+"menu suspenso na barra de navegação mostra o modo de depuração atual com um "
+"emblema colorido e permite alternar para qualquer um dos 5 modos em um "
+"clique. A preferência por usuário é lembrada entre sessões no seu registro "
+"res.users. Ctrl+Shift+D percorre os modos; Ctrl+Shift+A salta para Assets. "
+"Compatível com celular. Uma faixa na borda da página nos modos pesados "
+"(Assets / Tests) impede que você esqueça que está desacelerando o "
+"aplicativo. Um interruptor mestre global 'desativar em produção' mantém o "
+"módulo inativo em bancos de dados de produção."
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_users__x_debug_default_mode
@@ -94,11 +121,40 @@ msgid "Disable Debug Switcher in Production"
 msgstr "Desativar Alternador de Depuração em Produção"
 
 #. module: no_debug_quick_switcher
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_ir_http__display_name
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_users__display_name
+msgid "Display Name"
+msgstr "Nome exibido"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model,name:no_debug_quick_switcher.model_ir_http
+msgid "HTTP Routing"
+msgstr "Roteamento HTTP"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_ir_http__id
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_config_settings__id
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
 #: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__
 msgid "Off"
 msgstr "Desativado"
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,summary:base.module_no_debug_quick_switcher
+msgid ""
+"One-click navbar switcher for Odoo's 5 debug modes — Off, Dev, Assets, "
+"Tests, Assets+Tests — with per-user default, hotkey, and mobile support"
+msgstr ""
+"Alternador da barra de navegação de um clique para os 5 modos de depuração "
+"do Odoo — Desligado, Dev, Assets, Tests, Assets+Tests — com preferência por "
+"usuário, atalho de teclado e suporte móvel"
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields,help:no_debug_quick_switcher.field_res_users__x_debug_default_mode
@@ -119,6 +175,11 @@ msgid "Tests"
 msgstr "Testes"
 
 #. module: no_debug_quick_switcher
+#: model:ir.model,name:no_debug_quick_switcher.model_res_users
+msgid "User"
+msgstr "Usuário"
+
+#. module: no_debug_quick_switcher
 #: model:ir.model.fields,help:no_debug_quick_switcher.field_res_config_settings__x_debug_switcher_disabled
 msgid ""
 "When enabled, the navbar switcher hides and the per-user default is ignored."
@@ -131,40 +192,3 @@ msgstr ""
 "de produção — evita que os usuários cheguem acidentalmente no modo Tests "
 "(que desacelera drasticamente o carregamento de páginas ao carregar os "
 "assets QUnit)."
-#. module: no_debug_quick_switcher
-#: model:ir.module.module,description:no_debug_quick_switcher.module_meta_information
-msgid ""
-"Debug Mode Quick Switcher replaces the URL-typing dance. A navbar drop"
-"down shows the current debug mode with a colour badge and lets you jum"
-"p to any of the 5 modes in one click. Per-user default is remembered a"
-"cross sessions on your res.users record. Ctrl+Shift+D cycles modes; Ct"
-"rl+Shift+A jumps to Assets. Mobile-ready. A page-edge stripe in heavy "
-"modes (Assets / Tests) keeps you from forgetting you're slowing the ap"
-"p down. Global 'disable in production' master switch keeps the module "
-"dormant on prod databases."
-msgstr ""
-"Alternador Rápido de Modo Depuração substitui a digitação manual da UR"
-"L. Um menu suspenso na barra de navegação mostra o modo de depuração a"
-"tual com um emblema colorido e permite alternar para qualquer um dos 5"
-" modos em um clique. A preferência por usuário é lembrada entre sessõe"
-"s no seu registro res.users. Ctrl+Shift+D percorre os modos; Ctrl+Shif"
-"t+A salta para Assets. Compatível com celular. Uma faixa na borda da p"
-"ágina nos modos pesados (Assets / Tests) impede que você esqueça que e"
-"stá desacelerando o aplicativo. Um interruptor mestre global 'desativa"
-"r em produção' mantém o módulo inativo em bancos de dados de produção."
-
-#. module: no_debug_quick_switcher
-#: model:ir.module.module,shortdesc:no_debug_quick_switcher.module_meta_information
-msgid "Debug Mode Quick Switcher"
-msgstr "Alternador Rápido de Modo Depuração"
-
-#. module: no_debug_quick_switcher
-#: model:ir.module.module,summary:no_debug_quick_switcher.module_meta_information
-msgid ""
-"One-click navbar switcher for Odoo's 5 debug modes — Off, Dev, Assets,"
-" Tests, Assets+Tests — with per-user default, hotkey, and mobile suppo"
-"rt"
-msgstr ""
-"Alternador da barra de navegação de um clique para os 5 modos de depur"
-"ação do Odoo — Desligado, Dev, Assets, Tests, Assets+Tests — com prefe"
-"rência por usuário, atalho de teclado e suporte móvel"

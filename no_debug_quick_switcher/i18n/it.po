@@ -30,7 +30,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
 msgid "A+T"
-msgstr "A+T"
+msgstr ""
 
 #. module: no_debug_quick_switcher
 #. odoo-javascript
@@ -45,6 +45,11 @@ msgstr "Asset"
 #: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__assets,tests
 msgid "Assets + Tests"
 msgstr "Asset + Test"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model,name:no_debug_quick_switcher.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni di configurazione"
 
 #. module: no_debug_quick_switcher
 #. odoo-javascript
@@ -65,10 +70,32 @@ msgid "Debug Mode"
 msgstr "Modalità Debug"
 
 #. module: no_debug_quick_switcher
+#: model:ir.module.module,shortdesc:base.module_no_debug_quick_switcher
 #: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_debug_mode
 #: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_preferences_debug_mode
 msgid "Debug Mode Quick Switcher"
 msgstr "Selettore Rapido Modalità Debug"
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,description:base.module_no_debug_quick_switcher
+msgid ""
+"Debug Mode Quick Switcher replaces the URL-typing dance. A navbar dropdown "
+"shows the current debug mode with a colour badge and lets you jump to any of"
+" the 5 modes in one click. Per-user default is remembered across sessions on"
+" your res.users record. Ctrl+Shift+D cycles modes; Ctrl+Shift+A jumps to "
+"Assets. Mobile-ready. A page-edge stripe in heavy modes (Assets / Tests) "
+"keeps you from forgetting you're slowing the app down. Global 'disable in "
+"production' master switch keeps the module dormant on prod databases."
+msgstr ""
+"Selettore Rapido Modalità Debug sostituisce la digitazione manuale dell'URL."
+" Un menu a tendina nella barra di navigazione mostra la modalità di debug "
+"corrente con un badge colorato e consente di passare a una qualsiasi delle 5"
+" modalità con un clic. La preferenza per utente è ricordata tra le sessioni "
+"sul tuo record res.users. Ctrl+Maiusc+D scorre le modalità; Ctrl+Maiusc+A "
+"salta ad Assets. Compatibile mobile. Una striscia sul bordo della pagina "
+"nelle modalità pesanti (Assets / Tests) ti impedisce di dimenticare che stai"
+" rallentando l'app. Un interruttore principale globale 'disattiva in "
+"produzione' mantiene il modulo inattivo sui database di produzione."
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_users__x_debug_default_mode
@@ -94,11 +121,40 @@ msgid "Disable Debug Switcher in Production"
 msgstr "Disattivare Selettore Debug in Produzione"
 
 #. module: no_debug_quick_switcher
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_ir_http__display_name
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_users__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model,name:no_debug_quick_switcher.model_ir_http
+msgid "HTTP Routing"
+msgstr "Instradamento HTTP"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_ir_http__id
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_config_settings__id
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
 #: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__
 msgid "Off"
 msgstr "Disattivato"
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,summary:base.module_no_debug_quick_switcher
+msgid ""
+"One-click navbar switcher for Odoo's 5 debug modes — Off, Dev, Assets, "
+"Tests, Assets+Tests — with per-user default, hotkey, and mobile support"
+msgstr ""
+"Selettore della barra di navigazione a un clic per le 5 modalità di debug di"
+" Odoo — Disattivato, Dev, Assets, Tests, Assets+Tests — con preferenza per "
+"utente, scorciatoia da tastiera e supporto mobile"
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields,help:no_debug_quick_switcher.field_res_users__x_debug_default_mode
@@ -120,6 +176,11 @@ msgid "Tests"
 msgstr "Test"
 
 #. module: no_debug_quick_switcher
+#: model:ir.model,name:no_debug_quick_switcher.model_res_users
+msgid "User"
+msgstr "Utente"
+
+#. module: no_debug_quick_switcher
 #: model:ir.model.fields,help:no_debug_quick_switcher.field_res_config_settings__x_debug_switcher_disabled
 msgid ""
 "When enabled, the navbar switcher hides and the per-user default is ignored."
@@ -132,41 +193,3 @@ msgstr ""
 " produzione — impedisce agli utenti di atterrare accidentalmente in modalità"
 " Tests (che rallenta drasticamente il caricamento delle pagine caricando gli"
 " asset QUnit)."
-#. module: no_debug_quick_switcher
-#: model:ir.module.module,description:no_debug_quick_switcher.module_meta_information
-msgid ""
-"Debug Mode Quick Switcher replaces the URL-typing dance. A navbar drop"
-"down shows the current debug mode with a colour badge and lets you jum"
-"p to any of the 5 modes in one click. Per-user default is remembered a"
-"cross sessions on your res.users record. Ctrl+Shift+D cycles modes; Ct"
-"rl+Shift+A jumps to Assets. Mobile-ready. A page-edge stripe in heavy "
-"modes (Assets / Tests) keeps you from forgetting you're slowing the ap"
-"p down. Global 'disable in production' master switch keeps the module "
-"dormant on prod databases."
-msgstr ""
-"Selettore Rapido Modalità Debug sostituisce la digitazione manuale del"
-"l'URL. Un menu a tendina nella barra di navigazione mostra la modalità"
-" di debug corrente con un badge colorato e consente di passare a una q"
-"ualsiasi delle 5 modalità con un clic. La preferenza per utente è rico"
-"rdata tra le sessioni sul tuo record res.users. Ctrl+Maiusc+D scorre l"
-"e modalità; Ctrl+Maiusc+A salta ad Assets. Compatibile mobile. Una str"
-"iscia sul bordo della pagina nelle modalità pesanti (Assets / Tests) t"
-"i impedisce di dimenticare che stai rallentando l'app. Un interruttore"
-" principale globale 'disattiva in produzione' mantiene il modulo inatt"
-"ivo sui database di produzione."
-
-#. module: no_debug_quick_switcher
-#: model:ir.module.module,shortdesc:no_debug_quick_switcher.module_meta_information
-msgid "Debug Mode Quick Switcher"
-msgstr "Selettore Rapido Modalità Debug"
-
-#. module: no_debug_quick_switcher
-#: model:ir.module.module,summary:no_debug_quick_switcher.module_meta_information
-msgid ""
-"One-click navbar switcher for Odoo's 5 debug modes — Off, Dev, Assets,"
-" Tests, Assets+Tests — with per-user default, hotkey, and mobile suppo"
-"rt"
-msgstr ""
-"Selettore della barra di navigazione a un clic per le 5 modalità di de"
-"bug di Odoo — Disattivato, Dev, Assets, Tests, Assets+Tests — con pref"
-"erenza per utente, scorciatoia da tastiera e supporto mobile"

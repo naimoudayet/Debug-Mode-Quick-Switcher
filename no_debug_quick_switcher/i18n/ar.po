@@ -47,6 +47,11 @@ msgid "Assets + Tests"
 msgstr "الأصول + الاختبارات"
 
 #. module: no_debug_quick_switcher
+#: model:ir.model,name:no_debug_quick_switcher.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التهيئة"
+
+#. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.xml:0
 msgid "Copy debug URL"
@@ -65,10 +70,30 @@ msgid "Debug Mode"
 msgstr "وضع التصحيح"
 
 #. module: no_debug_quick_switcher
+#: model:ir.module.module,shortdesc:base.module_no_debug_quick_switcher
 #: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_debug_mode
 #: model_terms:ir.ui.view,arch_db:no_debug_quick_switcher.view_users_form_preferences_debug_mode
 msgid "Debug Mode Quick Switcher"
 msgstr "محوّل وضع التصحيح السريع"
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,description:base.module_no_debug_quick_switcher
+msgid ""
+"Debug Mode Quick Switcher replaces the URL-typing dance. A navbar dropdown "
+"shows the current debug mode with a colour badge and lets you jump to any of"
+" the 5 modes in one click. Per-user default is remembered across sessions on"
+" your res.users record. Ctrl+Shift+D cycles modes; Ctrl+Shift+A jumps to "
+"Assets. Mobile-ready. A page-edge stripe in heavy modes (Assets / Tests) "
+"keeps you from forgetting you're slowing the app down. Global 'disable in "
+"production' master switch keeps the module dormant on prod databases."
+msgstr ""
+"محوّل وضع التصحيح السريع يلغي الحاجة لكتابة المعاملات في شريط العنوان. تظهر "
+"قائمة منسدلة في شريط التنقل الوضع الحالي بشارة ملوّنة وتتيح لك التنقل بين "
+"الأوضاع الخمسة بنقرة واحدة. الوضع الافتراضي لكل مستخدم يُحفظ بين الجلسات على"
+" سجل res.users الخاص بك. Ctrl+Shift+D للتنقل بين الأوضاع؛ Ctrl+Shift+A "
+"للانتقال مباشرة إلى وضع الأصول. متوافق مع الأجهزة المحمولة. شريط ملوّن على "
+"حافة الصفحة في الأوضاع الثقيلة (الأصول / الاختبارات) لتذكيرك بأنك تبطّئ "
+"التطبيق. مفتاح تعطيل عام للإنتاج يبقي الوحدة خاملة على قواعد بيانات الإنتاج."
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_users__x_debug_default_mode
@@ -94,11 +119,40 @@ msgid "Disable Debug Switcher in Production"
 msgstr "تعطيل محوّل التصحيح في بيئة الإنتاج"
 
 #. module: no_debug_quick_switcher
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_ir_http__display_name
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_users__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model,name:no_debug_quick_switcher.model_ir_http
+msgid "HTTP Routing"
+msgstr "مسار HTTP"
+
+#. module: no_debug_quick_switcher
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_ir_http__id
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_config_settings__id
+#: model:ir.model.fields,field_description:no_debug_quick_switcher.field_res_users__id
+msgid "ID"
+msgstr "المُعرّف"
+
+#. module: no_debug_quick_switcher
 #. odoo-javascript
 #: code:addons/no_debug_quick_switcher/static/src/systray/debug_switcher.js:0
 #: model:ir.model.fields.selection,name:no_debug_quick_switcher.selection__res_users__x_debug_default_mode__
 msgid "Off"
 msgstr "متوقف"
+
+#. module: no_debug_quick_switcher
+#: model:ir.module.module,summary:base.module_no_debug_quick_switcher
+msgid ""
+"One-click navbar switcher for Odoo's 5 debug modes — Off, Dev, Assets, "
+"Tests, Assets+Tests — with per-user default, hotkey, and mobile support"
+msgstr ""
+"محوّل في شريط التنقل بنقرة واحدة لأوضاع التصحيح الخمسة في Odoo — متوقف، "
+"مطوّر، أصول، اختبارات، أصول+اختبارات — مع وضع افتراضي لكل مستخدم واختصار "
+"لوحة مفاتيح ودعم للجوال"
 
 #. module: no_debug_quick_switcher
 #: model:ir.model.fields,help:no_debug_quick_switcher.field_res_users__x_debug_default_mode
@@ -119,6 +173,11 @@ msgid "Tests"
 msgstr "اختبارات"
 
 #. module: no_debug_quick_switcher
+#: model:ir.model,name:no_debug_quick_switcher.model_res_users
+msgid "User"
+msgstr "المستخدم"
+
+#. module: no_debug_quick_switcher
 #: model:ir.model.fields,help:no_debug_quick_switcher.field_res_config_settings__x_debug_switcher_disabled
 msgid ""
 "When enabled, the navbar switcher hides and the per-user default is ignored."
@@ -130,39 +189,3 @@ msgstr ""
 "يُنصح بتفعيله على قواعد بيانات الإنتاج — يمنع المستخدمين من الدخول بالخطأ "
 "إلى وضع الاختبارات (الذي يبطّئ تحميل الصفحات بشكل ملحوظ بسبب تحميل أصول "
 "QUnit)."
-#. module: no_debug_quick_switcher
-#: model:ir.module.module,description:no_debug_quick_switcher.module_meta_information
-msgid ""
-"Debug Mode Quick Switcher replaces the URL-typing dance. A navbar drop"
-"down shows the current debug mode with a colour badge and lets you jum"
-"p to any of the 5 modes in one click. Per-user default is remembered a"
-"cross sessions on your res.users record. Ctrl+Shift+D cycles modes; Ct"
-"rl+Shift+A jumps to Assets. Mobile-ready. A page-edge stripe in heavy "
-"modes (Assets / Tests) keeps you from forgetting you're slowing the ap"
-"p down. Global 'disable in production' master switch keeps the module "
-"dormant on prod databases."
-msgstr ""
-"محوّل وضع التصحيح السريع يلغي الحاجة لكتابة المعاملات في شريط العنوان. "
-"تظهر قائمة منسدلة في شريط التنقل الوضع الحالي بشارة ملوّنة وتتيح لك التن"
-"قل بين الأوضاع الخمسة بنقرة واحدة. الوضع الافتراضي لكل مستخدم يُحفظ بين"
-" الجلسات على سجل res.users الخاص بك. Ctrl+Shift+D للتنقل بين الأوضاع؛ "
-"Ctrl+Shift+A للانتقال مباشرة إلى وضع الأصول. متوافق مع الأجهزة المحمول"
-"ة. شريط ملوّن على حافة الصفحة في الأوضاع الثقيلة (الأصول / الاختبارات) "
-"لتذكيرك بأنك تبطّئ التطبيق. مفتاح تعطيل عام للإنتاج يبقي الوحدة خاملة ع"
-"لى قواعد بيانات الإنتاج."
-
-#. module: no_debug_quick_switcher
-#: model:ir.module.module,shortdesc:no_debug_quick_switcher.module_meta_information
-msgid "Debug Mode Quick Switcher"
-msgstr "محوّل وضع التصحيح السريع"
-
-#. module: no_debug_quick_switcher
-#: model:ir.module.module,summary:no_debug_quick_switcher.module_meta_information
-msgid ""
-"One-click navbar switcher for Odoo's 5 debug modes — Off, Dev, Assets,"
-" Tests, Assets+Tests — with per-user default, hotkey, and mobile suppo"
-"rt"
-msgstr ""
-"محوّل في شريط التنقل بنقرة واحدة لأوضاع التصحيح الخمسة في Odoo — متوقف،"
-" مطوّر، أصول، اختبارات، أصول+اختبارات — مع وضع افتراضي لكل مستخدم واخت"
-"صار لوحة مفاتيح ودعم للجوال"
