@@ -2,35 +2,35 @@
 <templates xml:space="preserve">
 
     <t t-name="no_debug_quick_switcher.DebugModeSwitcher">
-        <div class="o_no_debug_switcher" t-att-data-mode="state.current.value">
+        <div class="o_no_debug_switcher" t-att-data-mode="this.state.current.value">
             <Dropdown>
                 <button class="o-dropdown btn btn-link o_no_debug_switcher__btn"
-                        t-att-title="tooltipText">
+                        t-att-title="this.tooltipText">
                     <span class="o_no_debug_switcher__badge"
-                          t-att-style="'background-color: ' + state.current.color">
-                        <t t-esc="state.current.short"/>
+                          t-att-style="'background-color: ' + this.state.current.color">
+                        <t t-out="this.state.current.short"/>
                     </span>
                 </button>
                 <t t-set-slot="content">
                     <div class="o_no_debug_switcher__menu">
                         <div class="dropdown-header py-1 px-3 small text-muted">Debug Mode</div>
-                        <t t-foreach="modes" t-as="mode" t-key="mode.value">
+                        <t t-foreach="this.modes" t-as="mode" t-key="mode.value">
                             <DropdownItem onSelected="() => this.onSelectMode(mode.value)"
-                                          attrs="{ 'class': mode.value === state.current.value ? 'active' : '' }">
+                                          attrs="{ 'class': mode.value === this.state.current.value ? 'active' : '' }">
                                 <span class="d-inline-block o_no_debug_switcher__swatch me-2"
                                       t-att-style="'background-color: ' + mode.color"/>
-                                <span t-esc="mode.label"/>
-                                <t t-if="mode.value === state.current.value">
-                                    <i class="fa fa-check ms-2 text-success"/>
+                                <span t-out="mode.label"/>
+                                <t t-if="mode.value === this.state.current.value">
+                                    <i class="oi ms-2 text-success" data-icon="check"/>
                                 </t>
                             </DropdownItem>
                         </t>
                         <div class="dropdown-divider"/>
                         <DropdownItem onSelected="() => this.onCopyDebugUrl()">
-                            <i class="fa fa-link me-2 text-muted"/>Copy debug URL
+                            <i class="oi me-2 text-muted" data-icon="link"/>Copy debug URL
                         </DropdownItem>
                         <div class="px-3 pt-1 pb-2 small text-muted o_no_debug_switcher__hotkey-hint"
-                             t-out="hotkeyHintMarkup"/>
+                             t-out="this.hotkeyHintMarkup"/>
                     </div>
                 </t>
             </Dropdown>

@@ -1,6 +1,6 @@
 # Manual Test Scenarios -- Debug Mode Quick Switcher
 
-Dev stack: `docker-compose up -d`, then open <http://localhost:13419> and use database `debug19`.
+Dev stack: `docker-compose up -d`, then open <http://localhost:13420> and use database `debug19`.
 Log in as an Internal User with Settings access; the switcher is in the systray (top-right navbar).
 
 ## 1. The five modes

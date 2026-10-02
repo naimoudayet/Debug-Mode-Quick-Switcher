@@ -1,9 +1,9 @@
 # Debug Mode Quick Switcher
 
 ![License](https://img.shields.io/badge/license-LGPL--3-blue)
-![Odoo](https://img.shields.io/badge/Odoo-19.0-blueviolet)
+![Odoo](https://img.shields.io/badge/Odoo-20.0-blueviolet)
 ![Languages](https://img.shields.io/badge/languages-9-orange)
-![Version](https://img.shields.io/badge/version-19.0.1.3.2-informational)
+![Version](https://img.shields.io/badge/version-20.0.1.3.2-informational)
 
 One-click navbar dropdown for Odoo's 5 debug modes — Off, Dev, Assets, Tests, Assets+Tests — with per-user default, hotkey, mobile support, and a page-edge stripe in heavy modes.
 
@@ -34,8 +34,8 @@ Odoo ships one debug button (Settings → Activate Developer Mode) that toggles 
 
 | Field | Value |
 |---|---|
-| Odoo Version | 19.0 |
-| Module Version | 19.0.1.3.2 |
+| Odoo Version | 20.0 |
+| Module Version | 20.0.1.3.2 |
 | License | LGPL-3 |
 | Dependencies | `web` |
 | Field Prefix | `x_` |
@@ -87,11 +87,11 @@ template is `i18n/no_debug_quick_switcher.pot`.
 docker-compose up -d
 ```
 
-Odoo: http://localhost:13419
+Odoo: http://localhost:13420
 
 ## Compatibility
 
-- Odoo 19.0 Community + Enterprise
+- Odoo 20.0 Community + Enterprise
 
 ## Author
 

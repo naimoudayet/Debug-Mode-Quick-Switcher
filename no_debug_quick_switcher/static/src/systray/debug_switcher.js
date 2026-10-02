@@ -26,11 +26,12 @@
  * services/debug_shortcut_service.js so we get namespacing + collision warnings
  * for free.
  */
-import { Component, markup, useState, onMounted } from "@odoo/owl";
+import { Component, markup, onMounted, proxy, usePlugin } from "@odoo/owl";
 import { Dropdown } from "@web/core/dropdown/dropdown";
 import { DropdownItem } from "@web/core/dropdown/dropdown_item";
 import { registry } from "@web/core/registry";
 import { router } from "@web/core/browser/router";
+import { UIPlugin } from "@web/core/ui/ui_plugin";
 import { session } from "@web/session";
 import { user } from "@web/core/user";
 import { useService } from "@web/core/utils/hooks";
@@ -110,9 +111,9 @@ export class DebugModeSwitcher extends Component {
     static props = {};
 
     setup() {
-        this.ui = useService("ui");
+        this.ui = usePlugin(UIPlugin);
         this.orm = useService("orm");
-        this.state = useState({
+        this.state = proxy({
             current: getCurrentMode(),
         });
         this.modes = DEBUG_MODES;
