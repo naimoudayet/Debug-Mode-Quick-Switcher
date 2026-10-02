@@ -1,7 +1,7 @@
 # Debug Mode Quick Switcher
 
 ![License](https://img.shields.io/badge/license-LGPL--3-blue)
-![Odoo](https://img.shields.io/badge/Odoo-16.0%20%7C%2017.0%20%7C%2018.0%20%7C%2019.0-blueviolet)
+![Odoo](https://img.shields.io/badge/Odoo-16.0%20%7C%2017.0%20%7C%2018.0%20%7C%2019.0%20%7C%2020.0-blueviolet)
 ![Languages](https://img.shields.io/badge/languages-9-orange)
 
 **Author: Naim OUDAYET**
@@ -14,6 +14,7 @@ Each Odoo major version lives on its own branch. Pick the one matching your serv
 
 | Odoo Version | Stable | Development |
 |---|---|---|
+| 20.0 | [`20.0`](../../tree/20.0) | [`20.0-dev`](../../tree/20.0-dev) |
 | 19.0 | [`19.0`](../../tree/19.0) | [`19.0-dev`](../../tree/19.0-dev) |
 | 18.0 | [`18.0`](../../tree/18.0) | [`18.0-dev`](../../tree/18.0-dev) |
 | 17.0 | [`17.0`](../../tree/17.0) | [`17.0-dev`](../../tree/17.0-dev) |
@@ -24,7 +25,7 @@ The technical module name is **`no_debug_quick_switcher`** on every version bran
 ## What It Does
 
 - **5 modes, one click** — Off / Developer / Assets / Tests / Assets + Tests, each with a coloured badge in the navbar so you always see which mode is active.
-- **Per-user default** — set your preferred starting mode on `res.users.x_debug_default_mode`. Lands on it whenever you log in. Stays in sync whether you switch from the navbar, **My Profile**, or Odoo's own debug menu.
+- **Per-user default** — set your preferred starting mode on `res.users.x_debug_default_mode`. Lands on it whenever you log in. Stays in sync whether you switch from the navbar, your **Preferences** (My Preferences on 19 and 20), or Odoo's own debug menu.
 - **Hotkeys** — `Ctrl+Shift+D` cycles modes; `Ctrl+Shift+A` jumps straight to Assets. Both auto-disable while typing.
 - **Page-edge stripe** — in Assets or Tests mode, a thin coloured bar lights up the top of the page so you don't forget you're slowing things down.
 - **Copy debug URL** — one-click copy of the current URL with `?debug=...` for sharing in tickets.
@@ -37,7 +38,7 @@ The technical module name is **`no_debug_quick_switcher`** on every version bran
 1. Check out the branch matching your Odoo version (see table above).
 2. Copy the `no_debug_quick_switcher/` folder into a directory listed in your Odoo `addons_path`.
 3. **Apps → Update Apps List → search "Debug Mode Quick Switcher" → Install**.
-4. (Optional) Open **My Profile** → set your default debug mode → Save.
+4. (Optional) Open **Preferences** (My Preferences on 19 and 20) from the user menu → set your default debug mode → Save.
 
 Full per-version installation, configuration, and test instructions live in each branch's own README.
 
