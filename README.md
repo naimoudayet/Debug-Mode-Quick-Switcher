@@ -62,7 +62,7 @@ Regional variants (e.g. `fr_BE`, `nl_BE`) inherit from the base language via Odo
 
 ## Compatibility
 
-Works on **Odoo 16.0, 17.0, 18.0, and 19.0**, Community and Enterprise editions. Python dependencies: none. Required Odoo module: `web`.
+Works on **Odoo 16.0, 17.0, 18.0, 19.0 and 20.0**, Community and Enterprise editions. Python dependencies: none. Required Odoo module: `web`.
 
 ## Repository Layout
 
