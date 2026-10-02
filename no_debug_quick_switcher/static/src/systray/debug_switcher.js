@@ -44,7 +44,12 @@ export const DEBUG_MODES = [
     { value: "1", label: _t("Developer"), short: _t("Dev"), color: "#00A09D" },
     { value: "assets", label: _t("Assets"), short: _t("Assets"), color: "#FF7F4F" },
     { value: "tests", label: _t("Tests"), short: _t("Tests"), color: "#714B67" },
-    { value: "assets,tests", label: _t("Assets + Tests"), short: _t("A+T"), color: "#5A3A52" },
+    {
+        value: "assets,tests",
+        label: _t("Assets + Tests"),
+        short: _t("A+T"),
+        color: "#5A3A52",
+    },
 ];
 
 /**
@@ -193,10 +198,12 @@ export class DebugModeSwitcher extends Component {
     // ODOO_GUIDELINES §12.6: NEVER split a sentence across multiple _t() calls.
     // markup() lets us keep <kbd> styling without t-raw / unsafe HTML risk.
     get hotkeyHintMarkup() {
-        return markup(_t(
-            "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> cycles · " +
-            "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> jumps to Assets"
-        ));
+        return markup(
+            _t(
+                "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> cycles · " +
+                    "<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> jumps to Assets",
+            ),
+        );
     }
 }
 

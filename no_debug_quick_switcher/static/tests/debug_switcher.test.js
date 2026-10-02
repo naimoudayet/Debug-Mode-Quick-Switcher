@@ -172,6 +172,8 @@ describe("DebugModeSwitcher (mounted)", () => {
             "Assets + Tests",
             "Copy debug URL",
         ]);
-        expect(queryOne(".o_no_debug_switcher__menu .dropdown-item.active")).toHaveText("Off");
+        expect(queryOne(".o_no_debug_switcher__menu .dropdown-item.active")).toHaveText(
+            "Off",
+        );
     });
 });

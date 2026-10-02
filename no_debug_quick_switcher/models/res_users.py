@@ -27,6 +27,6 @@ class ResUsers(models.Model):
         # text stays unchanged from the previous release so existing
         # translations don't break.
         help="Starting debug mode whenever you log in. Off by default. The "
-             "switcher in the navbar will land on this mode automatically — "
-             "no more typing ?debug=assets in the URL bar 30 times a day.",
+        "switcher in the navbar will land on this mode automatically — "
+        "no more typing ?debug=assets in the URL bar 30 times a day.",
     )

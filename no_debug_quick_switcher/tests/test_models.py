@@ -20,10 +20,12 @@ class TestDebugSwitcherModels(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.test_user = cls.env["res.users"].create({
-            "name": "Debug Switcher Test User",
-            "login": "debug_switcher_test_user",
-        })
+        cls.test_user = cls.env["res.users"].create(
+            {
+                "name": "Debug Switcher Test User",
+                "login": "debug_switcher_test_user",
+            }
+        )
         cls.IrConfig = cls.env["ir.config_parameter"].sudo()
         cls.KILLSWITCH_KEY = "no_debug_quick_switcher.disabled"
 
@@ -56,17 +58,16 @@ class TestDebugSwitcherModels(TransactionCase):
     def test_users_can_read_own_preference(self):
         """Users must be able to read their own preference (My Profile)."""
         self.test_user.x_debug_default_mode = "tests"
-        values = self.test_user.with_user(self.test_user).read(
-            ["x_debug_default_mode"]
-        )
+        values = self.test_user.with_user(self.test_user).read(["x_debug_default_mode"])
         self.assertEqual(values[0]["x_debug_default_mode"], "tests")
-
 
     def test_users_can_write_own_preference(self):
         """End-to-end: the user record itself, acting as itself, can save."""
-        self.test_user.with_user(self.test_user).write({
-            "x_debug_default_mode": "assets",
-        })
+        self.test_user.with_user(self.test_user).write(
+            {
+                "x_debug_default_mode": "assets",
+            }
+        )
         self.test_user.invalidate_recordset()
         self.assertEqual(self.test_user.x_debug_default_mode, "assets")
 
@@ -83,15 +84,19 @@ class TestDebugSwitcherModels(TransactionCase):
     def test_killswitch_round_trips_through_config_parameter(self):
         """Saving from Settings UI → row in ir.config_parameter;
         re-reading the Settings → same value."""
-        settings = self.env["res.config.settings"].create({
-            "x_debug_switcher_disabled": True,
-        })
+        settings = self.env["res.config.settings"].create(
+            {
+                "x_debug_switcher_disabled": True,
+            }
+        )
         settings.execute()
         self.assertTrue(self.IrConfig.get_bool(self.KILLSWITCH_KEY))
 
         # Flip back to False and confirm round-trip.
-        settings = self.env["res.config.settings"].create({
-            "x_debug_switcher_disabled": False,
-        })
+        settings = self.env["res.config.settings"].create(
+            {
+                "x_debug_switcher_disabled": False,
+            }
+        )
         settings.execute()
         self.assertFalse(self.IrConfig.get_bool(self.KILLSWITCH_KEY))
