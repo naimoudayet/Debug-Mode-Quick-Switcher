@@ -55,7 +55,9 @@ const debugShortcutService = {
     },
 };
 
-registry.category("services").add("no_debug_quick_switcher.shortcuts", debugShortcutService);
+registry
+    .category("services")
+    .add("no_debug_quick_switcher.shortcuts", debugShortcutService);
 
 // Sanity exports — available for tests + browser console.
 export { DEBUG_MODES, cycleToNextMode, activateDebug, getCurrentMode };
