@@ -5,6 +5,17 @@ All notable changes to **Debug Mode Quick Switcher** for Odoo 20.0 are documente
 This file follows the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format.
 Versions use Odoo's `<odoo_version>.<module_major>.<module_minor>.<module_patch>` scheme.
 
+## [20.0.1.3.2] - 2026-10-02
+
+### Changed
+- Ported to Odoo 20 (official `odoo:20` image, OWL 3; the Hoot suite passes in Chrome). The menu icons use Odoo 20's icon set.
+
+### Fixed
+- On Odoo 20 no backend page loaded once the module was installed: the production switch was read in a way Odoo 20 no longer accepts.
+- On Odoo 20 users could not save their own Default Debug Mode in their preferences; Odoo 20 needs the field declared for that.
+- On Odoo 20 the switcher was missing from the top bar: its component was rejected when the bar was built.
+- New tests: the production switch both ways and in what the web client receives, a user reading their own preference, and a test that mounts the switcher itself.
+
 ## [19.0.1.3.2] - 2026-06-02
 
 ### Changed
